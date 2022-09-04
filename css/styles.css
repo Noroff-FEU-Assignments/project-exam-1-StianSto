@@ -382,7 +382,7 @@ footer {
     }
     
     .show-nav {
-        transform: translateY(var(--displace-nav)));
+        transform: translateY(var(--displace-nav));
     }
 }
 
