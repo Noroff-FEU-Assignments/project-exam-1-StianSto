@@ -326,8 +326,9 @@ footer {
 @media only screen and (max-width: 1000px) {
 
     #primary-nav {
+        --displace-nav: 105vh;
         position: absolute;
-        top: -100%;
+        top: var(--displace-nav);
         left: 0;
         flex-direction: column;
         row-gap: 2rem;
@@ -381,7 +382,7 @@ footer {
     }
     
     .show-nav {
-        transform: translateY(100%);
+        transform: translateY(var(--displace-nav));
     }
 }
 
