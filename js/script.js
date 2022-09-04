@@ -10,7 +10,7 @@ header.innerHTML = `
         <div></div>
         <div></div>
     </div>
-    <div id="primary-nav" class=".show-nav">
+    <div id="primary-nav">
         <i class="nav-close fa-solid fa-xmark"></i>
         <div class="nav-search">
             <button class="btn btn btn--search btn--tactile"><i class="fa-solid fa-magnifying-glass"></i></button>
