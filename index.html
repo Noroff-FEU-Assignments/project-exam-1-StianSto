@@ -11,42 +11,209 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/48de792fa6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="js/script.js" defer></script>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <img src="assets/logo-the-daily-brew.svg" alt="">
+    <header></header>
+    <main>
+        <section class="hero">
+            <div class="hero--img"></div>
+            <div class="hero--text | margin-inline">
+                <h1 class="hero--title">The Daily Brew</h1>
+                <p class="hero--subtitle">“For us who get overly excited over a cup of coffee in the morning”</p>
             </div>
-            <div id="testmenu">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <div id="primary-nav" class=".show-nav">
-                <i class="nav-close fa-solid fa-xmark"></i>
-                <div class="nav-search">
-                    <button class="btn btn btn--search btn--tactile"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <input type="text" placeholder="search here">
+        </section>
+        <section class="posts--slider | section-space max-width-body margin-center" >
+            <h2 class=" | margin-inline">Recent Posts</h2>
+            <div>
+                <div class="slider-arrows--container">
+                    <button class="btn btn--arrow fa-solid fa-chevron-left" data-slider="recent-posts" data-slide-direction="left"></button>
+                    <button class="btn btn--arrow fa-solid .fa-solid fa-chevron-right" data-slider="recent-posts" data-slide-direction="right"></button>
                 </div>
-                <ul class=" | margin-inline">
-                    <li id="nav--home"class="active"><a href="">Home</a></li>
-                    <li id="nav--blog-posts"><a href="">Blog Posts</a></li>
-                    <li id="nav--topics">Topics<i class="fa-solid fa-chevron-down"></i>
-                        <ul id="nav--topics__menu">
-                            <li><a href="">Beans</a></li>
-                            <li><a href="">Brewing</a></li>
-                            <li><a href="">Café's</a></li>
-                        </ul>
+                <ul class="slider posts--recent__slider" data-slider="recent-posts">
+                    <li> 
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>Brewing with v60: 10 useful tips and recipes</h3>
+                            </div>
+                        </div>
                     </li>
-                    <li id="nav--contact"><a href="">Contact</a></li>
-                    <li id="nav--about"><a href="">About</a></li>
+                    <li>
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>AeroPress vs. V60 vs. French Press. which is the best brewer for you?</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>Which beans Should you buy? A guide to the best beans</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li> 
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>Brewing with v60: 10 useful tips and recipes</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>AeroPress vs. V60 vs. French Press. which is the best brewer for you?</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>Which beans Should you buy? A guide to the best beans</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li> 
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>Brewing with v60: 10 useful tips and recipes</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>AeroPress vs. V60 vs. French Press. which is the best brewer for you?</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>Which beans Should you buy? A guide to the best beans</h3>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
-        </nav>
-    </header>
-    <main></main>
-    <footer></footer>
+        </section>
+        <section class="fun-fact | section-space">
+            <div class="fun-fact__text | max-width-body margin-center">
+                <h2>Did You Know?</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+        </section>
+        <section class="topics-section | section-space margin-inline">
+            <h2>Check out these topics</h2>
+            <ul>
+                <li>
+                    <div class="topics-section__img" data-topic="brewing"></div>
+                    <h3 class="topics-section__title">Brewing</h3>
+                </li>
+                <li>
+                    <div class="topics-section__img" data-topic="coffee-beans"></div>
+                    <h3 class="topics-section__title">Coffee Beans</h3>
+                </li>
+                <li>
+                    <div class="topics-section__img" data-topic="cafe"></div>
+                    <h3 class="topics-section__title">Café's</h3>
+                </li>
+            </ul>
+        </section>
+        <section class="posts--slider | section-space max-width-body margin-center" >
+            <h2 class=" | margin-inline">Popular Posts</h2>
+            <div>
+                <div class="slider-arrows--container">
+                    <button class="btn btn--arrow fa-solid fa-chevron-left" data-slider="popular-posts" data-slide-direction="left"></button>
+                    <button class="btn btn--arrow fa-solid .fa-solid fa-chevron-right" data-slider="popular-posts" data-slide-direction="right"></button>
+                </div>
+                <ul class="slider posts--popular__slider" data-slider="popular-posts">
+                    <li> 
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>Brewing with v60: 10 useful tips and recipes</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>AeroPress vs. V60 vs. French Press. which is the best brewer for you?</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>Which beans Should you buy? A guide to the best beans</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li> 
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>Brewing with v60: 10 useful tips and recipes</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>AeroPress vs. V60 vs. French Press. which is the best brewer for you?</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>Which beans Should you buy? A guide to the best beans</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li> 
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>Brewing with v60: 10 useful tips and recipes</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>AeroPress vs. V60 vs. French Press. which is the best brewer for you?</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slider--post">
+                            <div class="slider--post__img"></div>
+                            <div class="slider--post__text">
+                                <h3>Which beans Should you buy? A guide to the best beans</h3>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer class=" | section-space"></footer>
 </body>
 </html>
