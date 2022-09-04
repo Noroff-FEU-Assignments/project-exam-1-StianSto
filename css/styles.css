@@ -328,7 +328,7 @@ footer {
     #primary-nav {
         --displace-nav: 105vh;
         position: absolute;
-        top: var(--displace-nav);
+        top: calc(-1 * var(--displace-nav));
         left: 0;
         flex-direction: column;
         row-gap: 2rem;
@@ -382,7 +382,7 @@ footer {
     }
     
     .show-nav {
-        transform: translateY(calc(-1 * var(--displace-nav)));
+        transform: translateY(var(--displace-nav)));
     }
 }
 
