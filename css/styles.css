@@ -52,15 +52,21 @@
 .section-space {  margin-top: var(--section-space);}
 .active { text-decoration: underline;}
 .hidden { display: none; }
+.flex-container { display: flex; flex-direction: column;}
+.overflow-x-hidden { overflow-x: hidden; }
 
-@media only screen and (min-width: 50rem) {
+@media only screen and (min-width: 769px) {
     :root {
         --fs-400: 22px;
         --fs-500: 32px;
         --fs-600: 42px;
         --fs-700: 64px;
     }
+
+    .flex-row-pc { flex-flow: row wrap; margin-inline: auto;}
 }
+
+
 
 /* css reset */
 * {
