@@ -327,7 +327,7 @@ footer {
 
     #primary-nav {
         position: absolute;
-        top: -105vh;
+        top: -100%;
         left: 0;
         flex-direction: column;
         row-gap: 2rem;
