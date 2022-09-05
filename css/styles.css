@@ -54,6 +54,7 @@
 .hidden { display: none; }
 .flex-container { display: flex; flex-direction: column;}
 .overflow-x-hidden { overflow-x: hidden; }
+.disable-scroll { overflow: hidden;}
 
 @media only screen and (min-width: 769px) {
     :root {
@@ -213,11 +214,11 @@ footer {
     height: 4.5rem;
 }
 
-#testmenu {
+#primary-nav-menu {
     flex: 1fr;
 }
 
-#testmenu > * {
+#primary-nav-menu > * {
     height: 5px;
     width: 50px;
     background-color: var(--clr-primary-200);
@@ -334,7 +335,7 @@ footer {
         row-gap: 2rem;
         width: 100vw;
         height: 100vh;
-        overflow-x: hidden;
+        overflow: hidden;
         z-index: 100;
     }
 
@@ -429,7 +430,7 @@ footer {
         display: none;
     }
 
-    #testmenu {
+    #primary-nav-menu {
         display: none;
     }
 

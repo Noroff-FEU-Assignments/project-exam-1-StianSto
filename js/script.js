@@ -5,7 +5,7 @@ header.innerHTML = `
     <div class="logo">
         <img src="assets/logo-the-daily-brew.svg" alt="">
     </div>
-    <div id="testmenu">
+    <div id="primary-nav-menu">
         <div></div>
         <div></div>
         <div></div>
@@ -36,6 +36,7 @@ header.innerHTML = `
 
 
 // navbar
+const body = document.querySelector("body");
 const primaryNav = document.querySelector("#primary-nav");
 const navBtnClose = document.querySelector(".nav-close");
 const navTopics = document.querySelector("#nav--topics");
@@ -62,33 +63,109 @@ navBtnClose.addEventListener("click", openNav);
 function openNav() {
     primaryNav.classList.toggle("show-nav");
     primaryNav.classList.remove("hidden");
+    body.classList.toggle("disable-scroll")
 }
 
-const testMenu = document.querySelector("#testmenu");
-
-testMenu.addEventListener("click", openNav);
+const primaryNavMenu = document.querySelector("#primary-nav-menu");
+primaryNavMenu.addEventListener("click", openNav);
 //
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // slider
 const btnSlider = document.querySelectorAll(".btn--arrow");
 const sliders = document.querySelectorAll(".slider");
+const slidersPosts = document.querySelectorAll(".slider .slider--post");
+const sliderIndicators = document.querySelectorAll(".slider-indicator");
+let visiblePosts = [];
 
-btnSlider.forEach( e => {
-    e.addEventListener("click", scrollSlider)
+
+sliders.forEach(slider => {
+    // find explicit slider 
+    const sliderDataAttr = slider.dataset.slider
+    let postsArr = [];
+    let indArr = [];
+    
+    // find relevant post to slider
+    slidersPosts.forEach( post => {
+        const postDataAttr = post.dataset.slider;
+        if(postDataAttr === sliderDataAttr && postsArr.indexOf(post) === -1) postsArr.push(post);
+    })
+
+    // find relevant indicators to slider
+    sliderIndicators.forEach( ind => {
+        const indDataAttr = ind.dataset.slider;
+        if(indDataAttr === sliderDataAttr && indArr.indexOf(ind) === -1) indArr.push(ind);
+    })
+    
+    // feed results into function 
+    connectPostAndIndicator(slider, postsArr, indArr)
+    slider.addEventListener("scroll", () => connectPostAndIndicator(slider, postsArr, indArr));
 })
 
-function scrollSlider(btn) {
+function connectPostAndIndicator(slider, posts, indicators) {
+    posts.forEach(post => postIsInView(slider, post, indicators))
+
+}
+
+function postIsInView(slider, element, indicators) {
+    const elementRect = element.getBoundingClientRect();
+    const sliderRect = slider.getBoundingClientRect();
+    
+    // check if pst is visible in slider
+    if (elementRect.left < (sliderRect.left) || 
+    elementRect.right > (sliderRect.right)) 
+    return visiblePosts.splice(element);
+
+    if (visiblePosts.indexOf(element) === -1) visiblePosts.push(element);
+
+    indicatorIsInView(indicators) 
+}
+
+
+function indicatorIsInView(indicators) {
+    let visibleIndArr = [];
+    indicators.forEach( ind => {
+        
+        ind.classList.remove("slider-indicator--active");
+        const indData = ind.dataset.slideIndicator;
+
+        // check if indicator shares common index with visible posts
+        visiblePosts.forEach( vp => {
+            visiblePostIndex = vp.dataset.sliderPostIndex;
+            if(indData === visiblePostIndex && visibleIndArr.indexOf(ind) === -1) visibleIndArr.push(ind);
+        })
+    })
+
+    visibleIndArr.forEach( e => e.classList.add("slider-indicator--active"))
+}
+
+
+// move slider on arrow btn click
+btnSlider.forEach( e => e.addEventListener("click", scrollSliderClick))
+
+function scrollSliderClick(btn) {
     let btnTarget = btn.target;
-    let slideDirection = btnTarget.dataset.slideDirection
+    let slideDirection = btnTarget.dataset.slideDirection;
 
     sliders.forEach( e => {
-        if(e.dataset.slider === btnTarget.dataset.slider){
-            let containerWidth = e.getBoundingClientRect().width;
-            if (slideDirection === "right")e.scrollLeft += containerWidth * 0.7;
-            if (slideDirection === "left")e.scrollLeft -= containerWidth * 0.7;
-        }
+        if(e.dataset.slider !== btnTarget.dataset.slider) return;
+
+        let slidersPosts = e.querySelector(".slider--post");
+        const slidersPostsWidth = slidersPosts.getBoundingClientRect().width;
+        if (slideDirection === "prev") e.scrollLeft -= slidersPostsWidth; 
+        if (slideDirection === "next") e.scrollLeft += slidersPostsWidth; 
+        
     })
 }
-//
-
