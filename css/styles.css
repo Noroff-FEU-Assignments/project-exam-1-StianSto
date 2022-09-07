@@ -38,10 +38,11 @@
 
     /* utility */
     --max-width-body: 1200px; 
-    --max-width-copy: 800px; 
+    --max-width-copy: 700px; 
     --margin-inline: 32px;
     --margin-center: auto;
     --section-space: 8rem;
+    --section-space-small: 2rem;
 }
 
 /* utility classes*/
@@ -50,8 +51,9 @@
 .margin-inline {  margin-inline: var(--margin-inline);}
 .margin-center {  margin-inline: var(--margin-center);}
 .section-space {  margin-top: var(--section-space);}
+.section-space-small {  margin-top: var(--section-space-small);}
 .active { text-decoration: underline;}
-.hidden { display: none; }
+.hidden { display: none !important;}
 .flex-container { display: flex; flex-direction: column;}
 .overflow-x-hidden { overflow-x: hidden; }
 .disable-scroll { overflow: hidden;}
@@ -63,8 +65,8 @@
         --fs-600: 42px;
         --fs-700: 64px;
     }
-
     .flex-row-pc { flex-flow: row wrap; margin-inline: auto;}
+    .disable-scroll { padding-right: 15px;}
 }
 
 
@@ -79,6 +81,12 @@
     text-decoration: none;
 }
 /**/
+
+h1::first-letter, 
+h2::first-letter, 
+h3::first-letter {
+    text-transform: capitalize;
+}
 
 h1 {
     font-size: var(--fs-700);
@@ -177,7 +185,7 @@ body {
 }
 
 header {
-    --height-header: 100px;
+    --height-header: 70px;
     height: var(--height-header);
     display: flex;
     justify-content: center;
@@ -265,10 +273,10 @@ footer {
     background-color: var(--clr-primary-700);
     border: 2px solid var(--clr-primary-200);
     border-radius: var(--rounded-200);
-    padding-left: calc(52px + 1em);
+    padding-left: calc(36px + 1em);
     color: white;
     width: 100%;
-    font-size: var(--fs-300);
+    font-size: 1rem;
 }
 
 #nav--topics__menu {
@@ -309,14 +317,14 @@ footer {
     }
 
     .navbar .btn--search {
-        font-size: 26px; 
+        font-size: 20px; 
         aspect-ratio: 1;
         padding-inline: 0.5em;
         border-radius: var(--rounded-200);
         background-color: var(--clr-primary-400);
         border: 2px solid var(--clr-primary-200);
         z-index: 2;
-        margin-right: -52px;
+        margin-right: -40px;
     }
 
     .fa-magnifying-glass {
