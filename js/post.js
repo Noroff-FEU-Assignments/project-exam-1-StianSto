@@ -2,14 +2,14 @@
 const queryString = document.location.search;
 const parameter = new URLSearchParams(queryString);
 const postID = parseFloat(parameter.get("id"));
-const url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/?_embed`;
+const url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/${postID}?_embed`;
 const article = document.querySelector("article")
 
 // fetch api and push results into createPost function
 async function fetchApi() {
     const response = await fetch(url);
-    const results = await response.json();
-    const post = results.find( result => result.id === postID)
+    const post = await response.json();
+    console.log(post)
 
     // check if featureed image is embedded
     let featuredImg = "";
@@ -52,14 +52,20 @@ const modal = document.createElement("div");
 modal.addEventListener("click", closeModal)
 
 function openModal() {
-    console.log(2)
     modal.style.display = "flex"
     
+    //clone targeted img and paste into modal 
     let img = this.cloneNode(true)
+    const imgAlt = document.createElement("p");
+    imgAlt.innerText = img.alt
+    // const imgContainer = document.createElement("div")
+
     modal.classList.add("modal");
-    img.classList.add("copy-img");
+    console.log(imgAlt)
     
     modal.appendChild(img);
+    modal.appendChild(imgAlt);
+    // modal.appendChild(imgContainer)
     body.appendChild(modal)
     body.classList.add("disable-scroll")
 
@@ -67,7 +73,6 @@ function openModal() {
 }
 
 function closeModal(event) {
-    console.log("running close modal")
     const modal = document.querySelector(".modal")
 
     if(event.target !== modal) return console.log(2);
@@ -77,7 +82,6 @@ function closeModal(event) {
         modal.style.display = "none"
         body.classList.remove("disable-scroll")
         modal.innerHTML = "";
-        modal.removeEventListener(all)
     }, 300) 
 }
 }

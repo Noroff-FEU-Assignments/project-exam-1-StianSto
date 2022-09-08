@@ -60,6 +60,7 @@
 
 @media only screen and (min-width: 769px) {
     :root {
+        --fs-copy: 18px;
         --fs-400: 22px;
         --fs-500: 32px;
         --fs-600: 42px;

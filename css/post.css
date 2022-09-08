@@ -1,3 +1,6 @@
+
+
+
 /* generel styling */
 section {
     margin-bottom: 1rem;
@@ -10,6 +13,7 @@ h2, h3, h4 {
 
 p {
     margin-bottom: 1em;
+    font-size: var(--fs-copy);
 }
 /**/
 
@@ -105,6 +109,7 @@ article img {
 .modal {
     position: fixed;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.3);
@@ -118,13 +123,18 @@ article img {
     transition: all 250ms ease-in;
 }
 
-.modal img{
-    object-fit: contain;
-
+.modal > * {
     max-width: 60vw;
     max-height: 60vh;
     width: auto;
     height: auto;
+    color: white;
+    padding: 1em 2em;
+    background: var(--clr-primary-700);
+}
+
+.modal img{
+    object-fit: contain;
     border: 20px solid var(--clr-primary-200);
     padding: 10px;
     background-color: var(--clr-primary-700);
