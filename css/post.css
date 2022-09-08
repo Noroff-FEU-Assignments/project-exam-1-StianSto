@@ -29,7 +29,7 @@ p {
 }
 
 #hero-picture {
-    background: url("../assets/images/stock-photo-coffee-in-blue-cup-on-wooden-table-in-cafe-with-lighting-background-1387420256.jpg"); /* temp */
+    background-color: var(--clr-primary-400);
     flex: 1 0 0px;
     min-height: 250px;
     background-size: cover;
@@ -50,35 +50,6 @@ h1 {
 }
 /**/
 
-@media only screen and (min-width: 769px) {
-    .hero-post__container {
-        flex-direction: row;
-    }
-    #hero-picture {
-        order: 1;
-    }
-    #title-container {
-        flex: 1;
-        margin: auto;     
-        align-items: center;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* copy and side-panel*/
 .container {
     display: flex;
@@ -90,17 +61,13 @@ h1 {
     position: relative;
 }
 
-
-
-
-
-
 figure {
     width: 100%; /* default */
     /* max-height: 80vh; */
     overflow: hidden;
     background: grey; /* default */
     min-height: 50px;
+    margin-block: 1em;
 }
 
 article img {
@@ -110,11 +77,14 @@ article img {
     height: 100%;
 }
 
+.side-panel {
+    display: none;
+    flex: 2;
+    background: rgb(238, 232, 232);
+    min-height: 700px;
+}
 
-
-
-
-
+/* utility for images */
 .img--horizontal {
     aspect-ratio: 16 / 9;
 }
@@ -123,8 +93,6 @@ article img {
     aspect-ratio: 9 / 16;
 }
 
-
-/* utility for images that doesnt cover whole widht of page */
 .img-float {
     width: 200px; /* default */
 }
@@ -132,39 +100,6 @@ article img {
 .float-right {float: right;}
 .float-left {float: left;}
 /**/
-
-
-
-
-
-
-.side-panel {
-    display: none;
-    flex: 2;
-    background: rgb(238, 232, 232);
-    min-height: 700px;
-}
-
-@media only screen and (min-width: 769px){
-    .side-panel {
-        display: block;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* modal for clicked images */
 .modal {
@@ -193,4 +128,22 @@ article img {
     border: 20px solid var(--clr-primary-200);
     padding: 10px;
     background-color: var(--clr-primary-700);
+}
+
+@media only screen and (min-width: 769px){
+    .hero-post__container {
+        flex-direction: row;
+    }
+    #hero-picture {
+        order: 1;
+    }
+    #title-container {
+        flex: 1;
+        margin: auto;     
+        align-items: center;
+    }
+    
+    .side-panel {
+        display: block;
+    }
 }

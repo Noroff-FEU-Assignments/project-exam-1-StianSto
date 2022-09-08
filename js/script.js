@@ -71,18 +71,6 @@ primaryNavMenu.addEventListener("click", openNav);
 //
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // slider
 const btnSlider = document.querySelectorAll(".btn--arrow");
 const sliders = document.querySelectorAll(".slider");
@@ -100,13 +88,13 @@ sliders.forEach(slider => {
     // find relevant post to slider
     slidersPosts.forEach( post => {
         const postDataAttr = post.dataset.slider;
-        if(postDataAttr === sliderDataAttr && postsArr.indexOf(post) === -1) postsArr.push(post);
+        if(postDataAttr === sliderDataAttr) postsArr.push(post);
     })
 
     // find relevant indicators to slider
     sliderIndicators.forEach( ind => {
         const indDataAttr = ind.dataset.slider;
-        if(indDataAttr === sliderDataAttr && indArr.indexOf(ind) === -1) indArr.push(ind);
+        if(indDataAttr === sliderDataAttr) indArr.push(ind);
     })
     
     // feed results into function 
@@ -116,7 +104,6 @@ sliders.forEach(slider => {
 
 function connectPostAndIndicator(slider, posts, indicators) {
     posts.forEach(post => postIsInView(slider, post, indicators))
-
 }
 
 function postIsInView(slider, element, indicators) {
@@ -125,12 +112,12 @@ function postIsInView(slider, element, indicators) {
     
     // check if pst is visible in slider
     if (elementRect.left < (sliderRect.left) || 
-    elementRect.right > (sliderRect.right)) 
+    elementRect.right > (sliderRect.right))
     return visiblePosts.splice(element);
 
     if (visiblePosts.indexOf(element) === -1) visiblePosts.push(element);
 
-    indicatorIsInView(indicators) 
+    indicatorIsInView(indicators);
 }
 
 
