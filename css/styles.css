@@ -115,7 +115,7 @@ h3 {
     font-weight: var(--fw-700);
 }
 
-p {
+li, p {
     color: var(--clr-text);
     font-family: var(--ff-secondary);
 }

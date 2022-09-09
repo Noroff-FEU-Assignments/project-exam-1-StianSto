@@ -1,5 +1,10 @@
+const queryString = document.location.search;
+const parameter = new URLSearchParams(queryString);
+const postID = parseFloat(parameter.get("id"));
+const article = document.querySelector("article")
+
 // fetch api 
-const url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts?per_page=10`;
+const url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/${postID}?_embed`;
 // wordpress api orderby default is: orderby=date which retrieves the most recent posts
 
 // fetch api and push results into createPost function

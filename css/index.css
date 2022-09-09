@@ -44,7 +44,7 @@
 .slider-container {
     position: relative;
 }
-.posts--slider::-webkit-scrollbar, .posts--popular__slider::-webkit-scrollbar {
+.posts--slider::-webkit-scrollbar, .posts--editors-pick__slider::-webkit-scrollbar {
     display: none;
 }
 
@@ -106,8 +106,8 @@
     background-color: var(--clr-primary-700);
 }
 
-/* popular slider */
-.section--popular-posts {
+/* editors-pick slider */
+.section--editors-pick-posts {
     flex: 1;
     overflow-x: hidden;
 }

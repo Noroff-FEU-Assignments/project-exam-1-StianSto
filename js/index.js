@@ -1,34 +1,36 @@
-import { createSliders } from "./script.js";
+import { createSliders } from "./functions/create-sliders.js";
+
+const urlTags = "https://www.snakesandbeans.com/wp-json/wp/v2/tags"
+const urlRecentTenPosts = `https://www.snakesandbeans.com/wp-json/wp/v2/posts?per_page=10&_embed`;
+const recentSlider = document.querySelector('.slider[data-slider="recent-posts"]')
+const editorsSlider = document.querySelector('.slider[data-slider="editors-pick-posts"]');
 
 // fetch api
-const queryString = document.location.search;
-const parameter = new URLSearchParams(queryString);
-const postID = parseFloat(parameter.get("id"));
-const url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/?per_page=10&_embed`;
+async function fetchTags() {
+    // get id for tag
+    let response = await fetch(urlTags);
+    let results = await response.json(); 
+    const editorsPickTag = results.find( tag => tag.slug === "editors-pick" ) 
+    const editorsPickTagID = editorsPickTag.id
+    const newUrl = `https://snakesandbeans.com/wp-json/wp/v2/posts?tags=${editorsPickTagID}&_embed`
 
-const recentSlider = document.querySelector('.slider[data-slider="recent-posts"]')
-const popularSlider = document.querySelector('.slider[data-slider="popular-posts"]');
-console.dir(recentSlider)
+    fetchApi(newUrl, editorsSlider)
+}
 
-async function fetchApi() {
-    const response = await fetch(url);
+async function fetchApi(url, slider) {
+    let response = await fetch(url);
     const results = await response.json();
 
-    createSlider(results, recentSlider)
-    createSlider(results, popularSlider)
-
+    createSlider(results, slider)
     createSliders();
-
 }
-fetchApi();
+fetchApi(urlRecentTenPosts, recentSlider);
+fetchTags();
 
 
 function createSlider(array, slider) {
 
     let sliderIndicators = slider.nextElementSibling;
-    console.log(slider)
-    console.log(sliderIndicators)
-    
     let html = "";
     let postIndex = 0;
     let featuredMedia = "";
@@ -43,12 +45,14 @@ function createSlider(array, slider) {
         //create html for post. 
         html += `
             <li> 
-                <div class="slider--post" data-slider="${sliderDataAttr}" data-slider-post-index="${postIndex}">
-                    <div style= "background-image: url(${featuredMedia})" class="slider--post__img"></div>
-                    <div class="slider--post__text">
-                        <h3>${post.title.rendered}</h3>
+                <a href="post.html?id=${post.id}">
+                    <div class="slider--post" data-slider="${sliderDataAttr}" data-slider-post-index="${postIndex}">
+                        <div style= "background-image: url(${featuredMedia})" class="slider--post__img"></div>
+                        <div class="slider--post__text">
+                            <h3>${post.title.rendered}</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li> 
         `
         // create indicator inside indicator container 
@@ -64,14 +68,13 @@ function createSlider(array, slider) {
 } 
 
 
-
 // set width on slider posts
-const popularSliderPost = popularSlider.querySelectorAll('.slider--post');
+const editorsSliderPost = editorsSlider.querySelectorAll('.slider--post');
 
 function setSlidePostWidth() {
     
-    let containerWidth = popularSlider.getBoundingClientRect().width; 
-    popularSliderPost.forEach(post => {
+    let containerWidth = editorsSlider.getBoundingClientRect().width; 
+    editorsSliderPost.forEach(post => {
         post.style.width = containerWidth - 100 + "px";
     })   
 }

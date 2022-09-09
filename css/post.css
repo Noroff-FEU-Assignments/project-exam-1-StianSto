@@ -16,6 +16,11 @@ p {
     font-size: var(--fs-copy);
     line-height: 1.5;
 }
+
+ol li {
+    margin-left: var(--margin-inline);
+    list-style: decimal;
+}
 /**/
 
 /* hero */
