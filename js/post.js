@@ -2,7 +2,7 @@
 const queryString = document.location.search;
 const parameter = new URLSearchParams(queryString);
 const postID = parseFloat(parameter.get("id"));
-const url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/${postID}?_embed`;
+const url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/${postID}/?_embed`;
 const article = document.querySelector("article")
 
 // fetch api and push results into createPost function
@@ -40,18 +40,21 @@ function createPost(post, img) {
 }
 
 
+// modal functions
 function modal() {
 
-const images = article.querySelectorAll("img");
+    const images = article.querySelectorAll("img");
 
-images.forEach( img => {
-    img.addEventListener("click", openModal)
+    images.forEach( img => {
+        img.addEventListener("click", openModal)
 })
 
 const modal = document.createElement("div");
 modal.addEventListener("click", closeModal)
 
+
 function openModal() {
+
     modal.style.display = "flex"
     
     //clone targeted img and paste into modal 
@@ -73,6 +76,7 @@ function openModal() {
 }
 
 function closeModal(event) {
+    
     const modal = document.querySelector(".modal")
 
     if(event.target !== modal) return console.log(2);

@@ -2,9 +2,9 @@
 const header = document.querySelector("header");
 header.innerHTML = `
     <nav class="navbar">
-    <div class="logo">
+    <a href="index.html" class="logo">
         <img src="assets/logo-the-daily-brew.svg" alt="">
-    </div>
+    </a>
     <div id="primary-nav-menu">
         <div></div>
         <div></div>

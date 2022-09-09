@@ -14,6 +14,7 @@ h2, h3, h4 {
 p {
     margin-bottom: 1em;
     font-size: var(--fs-copy);
+    line-height: 1.5;
 }
 /**/
 
@@ -49,7 +50,7 @@ p {
 h1 {
     margin: auto;
     max-width: 600px;
-    font-size: clamp(var(--fs-500), 5vw + 0.5rem, var(--fs-700));
+    font-size: clamp(var(--fs-500), 5vw + 0.5rem, 54px);
     padding: 1em 0.75em;
 }
 /**/
@@ -129,8 +130,6 @@ article img {
     width: auto;
     height: auto;
     color: white;
-    padding: 1em 2em;
-    background: var(--clr-primary-700);
 }
 
 .modal img{
