@@ -1,9 +1,6 @@
 // fetch api 
-const queryString = document.location.search;
-const parameter = new URLSearchParams(queryString);
-const postID = parseFloat(parameter.get("id"));
-const url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/${postID}/?_embed`;
-const article = document.querySelector("article")
+const url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts?per_page=10`;
+// wordpress api orderby default is: orderby=date which retrieves the most recent posts
 
 // fetch api and push results into createPost function
 async function fetchApi() {
@@ -76,7 +73,7 @@ function openModal() {
 }
 
 function closeModal(event) {
-    
+
     const modal = document.querySelector(".modal")
 
     if(event.target !== modal) return console.log(2);
