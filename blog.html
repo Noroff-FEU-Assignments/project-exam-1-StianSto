@@ -18,76 +18,31 @@
 <body>
     <header></header>
     <main class="section-space">
-        <div>
-            <h1 class=" | margin-inline">Posts</h1>
-            <button class="filter-items"></button>
+        <div class=" | container flex-spread max-width-1000 margin-center">
+            <h1>Posts</h1>
+            <button id="filter-items-btn"><span>Filter</span><i class="fa-solid fa-filter"></i></button>
         </div>
-        <div class="container-mosaic">
-            <div class="flex-mosaic">
-                <div class="tile tile--big">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>Best cafés in Norway</h2></div>
-                </div>
-                <div class="tile">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>Which beans Should you buy? a guide to the best beans</h2></div>
-                </div>
-                <div class="tile">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>AeroPress vs V60 vs French Press. who won?</h2></div>
-                </div>
-            </div>
-            <div class="flex-mosaic">
-                <div class="tile tile--big">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>AeroPress vs V60 vs French Press. who won?</h2></div>
-                </div>
-                <div class="tile">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>Brewing with V60: 10 useful tips and recipes</h2></div>
-                </div>
-                <div class="tile tile--small">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>Best cafés in Norway</h2></div>
-                </div>
-            </div>
+        <div id="filter-container" class="container max-width-1000 margin-center">
+            <input class="input-field" id="input-search" type="text" placeholder="search posts">
+            <select class="input-field" name="toic" id="topic">
+                <option value="">select topic</option>
+                <option value="31" data-topic-id="31">Brewing</option>
+                <option value="32" data-topic-id="32">Coffee Beans</option>
+                <option value="33" data-topic-id="33">Café's</option>
+            </select>
+            <select class="input-field" name="sort-by" id="sort-by">
+                <option value="">Sort by</option>
+                <option value="date-newest" data-filter-sort-date="newest">Newest -> oldest</option>
+                <option value="date-oldest" data-filter-sort-date="oldest">Oldest -> Newest</option>
+            </select>
+            <button id="filter-posts">Search</button>
         </div>
-        <div class="featured-post"></div>
-        <div class="container-mosaic">
-            <div class="flex-mosaic">
-                <div class="tile tile--big">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>Best cafés in Norway</h2></div>
-                </div>
-                <div class="tile">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>Which beans Should you buy? a guide to the best beans</h2></div>
-                </div>
-                <div class="tile">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>AeroPress vs V60 vs French Press. who won?</h2></div>
-                </div>
-            </div>
-            <div class="flex-mosaic">
-                <div class="tile tile--big">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>AeroPress vs V60 vs French Press. who won?</h2></div>
-                </div>
-                <div class="tile">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>Brewing with V60: 10 useful tips and recipes</h2></div>
-                </div>
-                <div class="tile tile--small">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>Best cafés in Norway</h2></div>
-                </div>
-            </div>
-        </div>
+        <div class="blog-section"></div>
     </main>
-    <div id="view-more">
+    <!-- <div id="view-more">
         <p>click to view more</p>
         <i class="fa-solid fa-chevron-down"></i>
-    </div>
+    </div> -->
     <footer class=" | section-space"></footer>
 </body>
 </html>

@@ -1,57 +1,126 @@
-const viewMore = document.querySelector("#view-more");
-const main = document.querySelector("main");
+const main = document.querySelector("main");    
+const blogSection = document.querySelector(".blog-section");    
+const topic = document.querySelector("#topic");
+const sortBy = document.querySelector("#sort-by");
+const search = document.querySelector("#input-search");
+const filterBtn = document.querySelector("#filter-posts") 
+// filterBtn.addEventListener("click", createBlogPage)
+filterBtn.addEventListener("click", filterPage);
+search.addEventListener("keypress", (event) =>  {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        filterBtn.click();
+    }
+})
 
+let response = [];
+let pageIndex = 1;
 
-const viewMoreHeight = viewMore.clientHeight
-
-function positionViewMore() {
-    let positionViewMore = body.clientHeight - viewMoreHeight;
-    viewMore.style.top = positionViewMore + "px";
+function filterPage() {
+    pageIndex = 1;
+    onLoad();
 }
-positionViewMore();
 
-main.addEventListener("click", () => insertPosts())
-viewMore.addEventListener("click", () => insertPosts())
+function updateUrl() {
+    let itemsPerPage = 6;
+    let topicValue = topic.value;
+    let searchValue = search.value.trim().replaceAll(" ", "+"); // creates a serachable string
+    let sortByValue = sortBy.value;
 
-function insertPosts() {
-console.dir(viewMore)
+    let url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts?_embed`
+    if (itemsPerPage ) url += `&per_page=${itemsPerPage}`
+    if (pageIndex) url += `&page=${pageIndex}`
+    if (topicValue) url += `&categories=${topicValue}`
+    if (searchValue) url += `&search=${searchValue}`
+    if (sortByValue) url += `&orderby=${sortByValue}`
+    return url
+} 
 
-    html = `
-    <div class="featured-post"></div>
-    <div class="container-mosaic">
-            <div class="flex-mosaic">
-                <div class="tile tile--big">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>Best cafés in Norway</h2></div>
-                </div>
-                <div class="tile">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>Which beans Should you buy? a guide to the best beans</h2></div>
-                </div>
-                <div class="tile">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>AeroPress vs V60 vs French Press. who won?</h2></div>
-                </div>
-            </div>
-            <div class="flex-mosaic">
-                <div class="tile tile--big">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>AeroPress vs V60 vs French Press. who won?</h2></div>
-                </div>
-                <div class="tile">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>Brewing with V60: 10 useful tips and recipes</h2></div>
-                </div>
-                <div class="tile tile--small">
-                    <div class="tile__img"></div>
-                    <div class="tile__title"><h2>Best cafés in Norway</h2></div>
-                </div>
-            </div>
-        </div>
-    `
 
-    main.innerHTML += html;
+async function preLoad(url) { response = await fetch(url); }
 
-    positionViewMore();
+async function onLoad(){
+    blogSection.innerHTML = "please wait while the site is brewing :)";
+    let newURL = updateUrl();
+    await preLoad(newURL);
+    blogSection.innerHTML= "";
+    createBlogPage();
+    createViewMore();
+}
+onLoad();
 
+
+async function createBlogPage() {
+    const results = await response.json();
+    const totalPages = parseFloat(response.headers.get("x-wp-totalPages"))
+
+    console.log(results)
+    console.log(pageIndex)
+    console.log(totalPages)
+    createHtml(results, pageIndex, totalPages)
+
+    if(pageIndex >= totalPages) return removeViewMore() // guard clause check for last page
+
+    pageIndex++
+    newURL = updateUrl()
+    await preLoad(newURL)
+}
+
+
+function createHtml(arr) {
+    const containerMosaic = document.createElement("div");
+    containerMosaic.classList.add("container-mosaic");
+    const flexMosaicLeft = document.createElement("div");
+    flexMosaicLeft.classList.add("flex-mosaic");
+    const flexMosaicRight = document.createElement("div");
+    flexMosaicRight.classList.add("flex-mosaic");
+    const featuredPost = document.createElement("div")
+    featuredPost.classList.add("featured-post")
+    featuredPost.innerHTML = "";
+
+    let index = 0;
+
+    arr.forEach( i => {
+        let featuredMedia = "";
+        if (i._embedded["wp:featuredmedia"]) featuredMedia = i._embedded["wp:featuredmedia"][0].source_url
+
+        let html = `
+            <a href="post.html?id=${i.id}" class="tile">
+                <div style="background-image:url(${featuredMedia})"class="tile__img"></div>
+                <div class="tile__title"><h2>${i.title.rendered}</h2></div>
+            </a>
+        `
+
+        if(index % 2 === 0) flexMosaicLeft.innerHTML += html;
+        else flexMosaicRight.innerHTML += html;
+
+        //append to container
+        containerMosaic.appendChild(flexMosaicLeft)
+        containerMosaic.appendChild(flexMosaicRight)
+        containerMosaic.appendChild(featuredPost)
+        index++        
+    })
+    blogSection.appendChild(containerMosaic)
+}
+
+
+const viewMore = document.createElement('div')
+viewMore.setAttribute("id", "view-more")
+viewMore.innerHTML = `
+    <div class="view-more-clickhandler"> 
+        <p>click to view more</p>
+        <i class="fa-solid fa-chevron-down"></i>
+    </div>
+`
+
+function createViewMore() {
+    main.after(viewMore)
+    const viewMoreClickHandler = document.querySelector(".view-more-clickhandler")
+    viewMoreClickHandler.addEventListener("click", () => createBlogPage());
+    viewMoreClickHandler.addEventListener("mouseenter", () => viewMoreClickHandler.classList.add("bounce-arrow"));
+    viewMoreClickHandler.addEventListener("mouseleave", () => viewMoreClickHandler.classList.remove("bounce-arrow"));
+}
+
+function removeViewMore() {
+    viewMore.remove()
 }
