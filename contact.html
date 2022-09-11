@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us | The Daily Brew</title>
+    <meta name="description" content="The Daily Brew is a coffee blog for those who love coffee and likes to wake up to a tasteful cup in the morning. The daily brew cover everything about coffee: from beans and brewing methods, to the best café's.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/48de792fa6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <script src="js/script.js" type="module" defer></script>
+    <script src="js/contact.js" type="module" defer></script>
+</head>
+<body>
+    <header></header>
+    <main>
+        <section class=" | margin-center max-width-copy section-space-small">
+            <h1>Contact Us</h1>
+        </section>
+        <form class=" | margin-center max-width-copy section-space-small" id="contact" action="" method="POST">
+            <div id="contact-details">
+                <div class="input-container">
+                    <label for="your-name">Your name</label>
+                    <input id="your-name" type="text" name="your-name" value="namerson" required>
+                </div>
+                <div class="input-container">
+                    <label for="your-email">Your Email</label>
+                    <input id="your-email" type="email" name="your-email" value="some@email.com" required>
+                </div>
+                <div class="input-container">
+                    <label for="your-subject">Subject</label>
+                    <input id="your-subject" type="text" name="your-subject" value="test" required>
+                </div>
+            </div>
+            <div class="input-container" id="contact-message">
+                <label for="your-message">Your Message</label>
+                <textarea name="" id="your-message" name="your-message" required>this is a message</textarea>
+            </div>
+        </form>
+        <button type="submit" form="contact">submit</button>
+    </main>
+    <footer></footer>
+</body>
+</html>

@@ -42,7 +42,7 @@ main {
     display: flex;
     flex-flow: row wrap;
     gap: var(--gap);
-    max-width: 1000px;
+    max-width: var(--max-width-1000);
     height: fit-content;
     margin-inline: auto;
     margin-block: 1rem;
@@ -104,7 +104,7 @@ main {
 
 .featured-post {
     width: 100%;
-    /* max-width: 800px; */
+    max-width: var(--max-width-1000);
     margin-inline: auto;
     height: 100px;
     background: var(--clr-primary-200);

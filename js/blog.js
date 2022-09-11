@@ -18,11 +18,11 @@ let pageIndex = 1;
 
 function filterPage() {
     pageIndex = 1;
-    onLoad();
+    loadContent();
 }
 
 function updateUrl() {
-    let itemsPerPage = 6;
+    let itemsPerPage = 4;
     let topicValue = topic.value;
     let searchValue = search.value.trim().replaceAll(" ", "+"); // creates a serachable string
     let sortByValue = sortBy.value;
@@ -39,7 +39,7 @@ function updateUrl() {
 
 async function preLoad(url) { response = await fetch(url); }
 
-async function onLoad(){
+async function loadContent(){
     blogSection.innerHTML = "please wait while the site is brewing :)";
     let newURL = updateUrl();
     await preLoad(newURL);
@@ -47,7 +47,7 @@ async function onLoad(){
     createBlogPage();
     createViewMore();
 }
-onLoad();
+loadContent();
 
 
 async function createBlogPage() {
@@ -59,7 +59,8 @@ async function createBlogPage() {
     console.log(totalPages)
     createHtml(results, pageIndex, totalPages)
 
-    if(pageIndex >= totalPages) return removeViewMore() // guard clause check for last page
+    if(pageIndex >= totalPages) return viewMore.remove() // guard clause check for last page}
+    addFeaturedPost();
 
     pageIndex++
     newURL = updateUrl()
@@ -74,9 +75,7 @@ function createHtml(arr) {
     flexMosaicLeft.classList.add("flex-mosaic");
     const flexMosaicRight = document.createElement("div");
     flexMosaicRight.classList.add("flex-mosaic");
-    const featuredPost = document.createElement("div")
-    featuredPost.classList.add("featured-post")
-    featuredPost.innerHTML = "";
+
 
     let index = 0;
 
@@ -97,7 +96,6 @@ function createHtml(arr) {
         //append to container
         containerMosaic.appendChild(flexMosaicLeft)
         containerMosaic.appendChild(flexMosaicRight)
-        containerMosaic.appendChild(featuredPost)
         index++        
     })
     blogSection.appendChild(containerMosaic)
@@ -121,6 +119,9 @@ function createViewMore() {
     viewMoreClickHandler.addEventListener("mouseleave", () => viewMoreClickHandler.classList.remove("bounce-arrow"));
 }
 
-function removeViewMore() {
-    viewMore.remove()
+function addFeaturedPost() {
+    const featuredPost = document.createElement("div")
+    featuredPost.classList.add("featured-post")
+    featuredPost.innerHTML = "";
+    blogSection.appendChild(featuredPost)
 }
