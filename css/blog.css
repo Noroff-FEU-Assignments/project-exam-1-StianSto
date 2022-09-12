@@ -70,7 +70,7 @@ main {
     background: url(../assets/images/stock-photo-coffee-in-blue-cup-on-wooden-table-in-cafe-with-lighting-background-1387420256.jpg) no-repeat;
     background-size: cover;
     background-position: center;
-    flex: 1;
+    flex-grow: 1;
     min-height: 20%;
     aspect-ratio: 3 / 2;
 }

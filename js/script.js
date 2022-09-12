@@ -26,7 +26,7 @@ header.innerHTML = `
                     <li><a href="">Café's</a></li>
                 </ul>
             </li>
-            <li id="nav--contact"><a href="">Contact</a></li>
+            <li id="nav--contact"><a href="contact.html">Contact</a></li>
             <li id="nav--about"><a href="">About</a></li>
         </ul>
     </div>

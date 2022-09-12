@@ -1,18 +1,43 @@
 main {
     display: flex;
     flex-direction: column;
+    margin: var(--margin-inline);
+    max-width: min(calc(100vw - var(--margin-inline)), 400px);
+    width: 100%;
+}
+
+h1 {
+    width: 100%;
 }
 
 form {
     display: flex;
-    width: fit-content;
-    gap: 1rem;
+    flex-direction: column;
+    width: 100%;
+    gap: 2rem;
+}
+
+#contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+@media only screen and (min-width: 769px) {
+    main {
+        max-width: min(calc(100vw - var(--margin-inline)), var(--max-width-copy));
+        margin-inline: var(--margin-center);
+    }
+    form {
+        flex-direction: row;
+    }
 }
 
 form > div {
     flex: 1;
 }
-#contact-message textarea{
+
+#your-message{
     height: 100%;
 }
 
@@ -28,6 +53,59 @@ button[type="submit"] {
     flex-direction: column;
     align-items: flex-start;
 }
+
+label {
+    font-size: var(--fs-300);
+    font-family: var(--ff-secondary);
+    font-weight: var(--fw-700);
+    color: var(--clr-primary-400);
+}
+label span {
+    font-size: smaller;
+    font-weight: var(--fw-300);
+}
+
+.input-field {
+    width: 100%;
+    border: 2px solid var(--clr-primary-700);
+}
+
+.input-field[data-valid="false"]{
+    border: 2px solid red;
+    animation: shake 400ms ease-out;
+}
+
+.input-field[data-valid="true"]{
+    border: 2px solid green;
+    animation: valid-input 700ms ease-out;
+}
+
+.input-field:focus-visible {
+    animation: inputfocus 2s infinite;
+    outline: 3px solid linear-gradient(0deg);
+    border-color: transparent;
+}
+
+
+@keyframes shake {
+    0%, 20%, 40%, 60%, 80%, 100% {transform: translateX(0px);}
+    10%, 50%, 90% {transform: translateX(10px);}
+    30%, 70% {transform: translateX(-10px);}
+}
+
+@keyframes valid-input {
+    0% {}
+    30%, 60% {transform: scale(1.05);}
+
+    100% {transform: scale(1);}
+}
+
+@keyframes inputfocus {
+    0% {outline-color: var(--clr-primary-200-darker);}
+    50% {outline-color: var(--clr-primary-200-lighter)}
+    100% {outline-color: var(--clr-primary-200-darker);}
+}
+
 
 .responded-message {
     align-self: center;

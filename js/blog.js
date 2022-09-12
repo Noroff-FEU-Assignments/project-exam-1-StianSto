@@ -84,9 +84,11 @@ function createHtml(arr) {
         if (i._embedded["wp:featuredmedia"]) featuredMedia = i._embedded["wp:featuredmedia"][0].source_url
 
         let html = `
-            <a href="post.html?id=${i.id}" class="tile">
+            <a href="post.html?id=${i.id}">
+            <div class="tile">
                 <div style="background-image:url(${featuredMedia})"class="tile__img"></div>
                 <div class="tile__title"><h2>${i.title.rendered}</h2></div>
+            </div>
             </a>
         `
 

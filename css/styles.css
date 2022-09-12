@@ -10,13 +10,16 @@
     --clr-primary-400-lighter: 	hsl(var(--base-primary-400), 25%, 50%);
     --clr-primary-400-darker: 	hsl(var(--base-primary-400), 25%, 24%);
     
+    --base-accent-900: 22;
+    --clr-accent-900: hsl(var(--base-accent-900), 74%, 53%);
+    --clr-accent-900-lighter: hsl(var(--base-accent-900), 84%, 63%);
+    --clr-accent-900-darker: hsl(var(--base-accent-900), 84%, 43%);
 
     --clr-primary-700: #3E1A0D;
     --clr-secondary-100: #FFF8F5;
     --clr-secondary-1000: #260A00;
     --clr-accent-100: #7E98B1;
     --clr-accent-200: #3B7BB7;
-    --clr-accent-900: #E07030;
     --clr-text: #303030;
 
     /* font-family*/
@@ -137,6 +140,7 @@ li, p {
     padding: 1rem;
     font-size: var(--fs-300);
     font-family: var(--ff-secondary);
+    border-radius: 5px;
 }
 
 /* components */
@@ -150,6 +154,10 @@ li, p {
     /**/
 }
 
+.btn:hover {
+    cursor: pointer;
+}
+
 .btn--cta {
     background-color: var(--clr-accent-900);
     color: white;
@@ -157,6 +165,10 @@ li, p {
     padding-inline: 2em;
     border-radius: var(--rounded-100);
     font-size: var(--fs-300);
+}
+
+.btn--cta:hover {
+    background-color: var(--clr-accent-900-lighter);
 }
 
 .btn--arrow {
