@@ -1,3 +1,6 @@
+document.querySelector("#nav--blog-posts").classList.add("active")
+
+
 const main = document.querySelector("main");    
 const blogSection = document.querySelector(".blog-section");    
 const topic = document.querySelector("#topic");
@@ -22,7 +25,7 @@ function filterPage() {
 }
 
 function updateUrl() {
-    let itemsPerPage = 4;
+    let itemsPerPage = 6;
     let topicValue = topic.value;
     let searchValue = search.value.trim().replaceAll(" ", "+"); // creates a serachable string
     let sortByValue = sortBy.value;

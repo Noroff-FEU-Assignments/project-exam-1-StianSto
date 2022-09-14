@@ -1,3 +1,5 @@
+document.querySelector("#nav--about").classList.add("active")
+
 const aboutUrl = "https://snakesandbeans.com/wp-json/wp/v2/pages/201";
 const article = document.querySelector("article")
 

@@ -1,3 +1,5 @@
+document.querySelector("#nav--contact").classList.add("active")
+
 const url = "https://snakesandbeans.com/wp-json/contact-form-7/v1/contact-forms/115/"
 
 const respondedMessage = document.createElement("p");

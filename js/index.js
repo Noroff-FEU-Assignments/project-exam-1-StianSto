@@ -1,5 +1,7 @@
 import { createSliders } from "./functions/create-sliders.js";
 
+document.querySelector("#nav--home").classList.add("active")
+
 const urlTags = "https://www.snakesandbeans.com/wp-json/wp/v2/tags"
 const urlRecentTenPosts = `https://www.snakesandbeans.com/wp-json/wp/v2/posts?per_page=10&_embed`;
 const recentSlider = document.querySelector('.slider[data-slider="recent-posts"]')

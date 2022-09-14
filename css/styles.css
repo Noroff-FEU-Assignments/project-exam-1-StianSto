@@ -202,6 +202,19 @@ li, p {
     transform: translateX(1px);
 }
 
+.breadcrumbs {
+    font-size: var(--fs-300);
+    margin: 1em 0 0 1em;
+    font-family: var(--ff-secondary);
+    font-weight: 300;
+    cursor: default;
+}
+
+.breadcrumbs > *:not(:last-child):hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 /**/
 
 body {

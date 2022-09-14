@@ -17,7 +17,7 @@ header.innerHTML = `
             <input type="text" placeholder="search here">
         </div>
         <ul class=" | margin-inline">
-            <li id="nav--home"class="active"><a href="../index.html">Home</a></li>
+            <li id="nav--home"><a href="../index.html">Home</a></li>
             <li id="nav--blog-posts"><a href="../blog.html">Blog Posts</a></li>
             <li id="nav--topics">Topics<i class="fa-solid fa-chevron-down"></i>
                 <ul id="nav--topics__menu">
@@ -27,7 +27,7 @@ header.innerHTML = `
                 </ul>
             </li>
             <li id="nav--contact"><a href="contact.html">Contact</a></li>
-            <li id="nav--about"><a href="">About</a></li>
+            <li id="nav--about"><a href="about.html">About</a></li>
         </ul>
     </div>
     </nav>

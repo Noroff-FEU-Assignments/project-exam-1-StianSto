@@ -12,11 +12,10 @@
     background-size: cover;
     background-position: center;
     color: white;
-    margin-bottom: var(--section-space);
 }
 
 h2 {
-    margin-block: 2em 0.5em;
+    margin-block: 1em 0.5em;
 }
 
 .hero h1 {
@@ -32,6 +31,10 @@ h2 {
 
 article {
     max-width: var(--max-width-aboutus);
+}
+
+p {
+    margin-bottom: 1em;
 }
 
 figure, .wp-block-image {

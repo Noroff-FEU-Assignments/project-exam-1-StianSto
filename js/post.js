@@ -2,6 +2,7 @@ const queryString = document.location.search;
 const parameter = new URLSearchParams(queryString);
 const postID = parseFloat(parameter.get("id"));
 const article = document.querySelector("article")
+const currentPage = document.querySelector("#current-page")
 
 // fetch api 
 const url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/${postID}?_embed`;
@@ -39,6 +40,7 @@ function createPost(post, img) {
     featuredImg.style.backgroundImage = `url("${img}")`
 
     article.innerHTML = post.content.rendered
+    currentPage.innerText = "blog-post: " + post.title.rendered
 }
 
 
