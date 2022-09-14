@@ -25,7 +25,7 @@ h2 {
 }
 
 .article-container {
-    max-width: var(--max-width-body);
+    max-width: var(--max-width-copy);
     margin-inline: auto;
 }
 
