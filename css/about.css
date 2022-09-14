@@ -1,0 +1,109 @@
+/* hero */
+:root {
+    --max-width-aboutus: 700px;
+}
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+    max-height: 500px;
+    background: url(../assets/images/img_hero_background.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    margin-bottom: var(--section-space);
+}
+
+h2 {
+    margin-block: 2em 0.5em;
+}
+
+.hero h1 {
+    padding-block: 10%;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    font-size: clamp(50px, 5vw + 1.5em, 100px);
+}
+
+.article-container {
+    max-width: var(--max-width-body);
+    margin-inline: auto;
+}
+
+article {
+    max-width: var(--max-width-aboutus);
+}
+
+figure, .wp-block-image {
+    max-width: var(--max-width-aboutus);
+    height: 100%;
+    background-size: cover;
+    min-height: 250px;
+    min-width: 150px;
+}
+
+figure img {
+    max-width: 100%;
+    height: auto;
+}
+
+.wp-block-media-text__media img {
+    display: none;
+}
+
+.inline-img-content-group {
+    margin-top: 1em;
+}
+
+.inline-img-container {
+    margin-top: 0.5em; /* re-align img and paragraph */
+    width: 50%;
+    height: 100%;
+}
+
+.inline-img-content-group p::before {
+    /* got this idea from stackoverflow comment: https://stackoverflow.com/questions/19179424/how-to-wrap-text-around-an-image-using-html-css. user: "syntax error" https://stackoverflow.com/users/4658279/syntax-error */
+    content: ' ';
+    display: table;
+    width: 20ch;    /* Min width required */
+}
+
+.inline-img {
+    width: 100%;
+}
+
+.float-left {
+    float: left;
+    margin-right: 1em;
+    background: red;
+}
+
+
+.wp-container-1 {
+    display: flex;
+    gap: 1.5rem, 0.5em ;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.wp-block-media-text {
+    display: grid;
+    grid-template-columns: 50% 1fr;
+    grid-template-rows: auto;
+    gap: 1em;
+}
+
+.wp-container-1, .wp-container-2, .wp-container-3 {
+    margin-block: 1rem;
+}
+
+@media (max-width: 670px) {
+    
+    .wp-block-media-text.is-stacked-on-mobile .wp-block-media-text__media {
+        grid-column: 1;
+        grid-row: 1;
+    }   
+    .wp-block-media-text.is-stacked-on-mobile {
+        grid-template-columns: 100%!important;
+    }
+}

@@ -18,12 +18,16 @@
 <body>
     <header></header>
     <main>
+        <!-- <div class="responded-message success">
+            <p class="success">Your message has been sent. <br>We at <i>The Daily Brew</i> Thank you for your input!</p>
+        </div> -->
+        
         <h1 class=" | max-width-copy margin-center">Contact Us</h1>
         <form class=" | margin-center section-space-small" id="contact" action="" method="POST">
             <div id="contact-details">
                 <div class="input-container">
                     <label for="your-name">Your name <span>(min. 5 characters)</span></label>
-                    <input class="input-field" id="your-name" type="text" name="your-name" value="namerson" data-valid="" required>
+                    <input class="input-field" id="your-name" type="text" name="your-name" value="" data-valid="" required>
                 </div>
                 <div class="input-container">
                     <label for="your-email">Your Email <span>(e.g: name@email.com)</span></label>
@@ -36,7 +40,7 @@
             </div>
             <div class="input-container" id="contact-message">
                 <label for="your-message">Your Message <span>(min. 25 characters)</span></label>
-                <textarea class="input-field" id="your-message" name="your-message" data-valid="" required>this is a message</textarea>
+                <textarea class="input-field" id="your-message" name="your-message" data-valid="" required></textarea>
             </div>
         </form>
         <button class="btn btn--cta btn--tactile" type="submit" data-form-is-valid="false" form="contact">submit</button>
