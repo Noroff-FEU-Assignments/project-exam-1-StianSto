@@ -26,9 +26,11 @@ function filterPage() {
 
 function updateUrl() {
     let itemsPerPage = 6;
-    let topicValue = topic.value;
+    let topicValue = topic.selectedOptions[0].dataset.topicId;
     let searchValue = search.value.trim().replaceAll(" ", "+"); // creates a serachable string
-    let sortByValue = sortBy.value;
+    let sortByValue = sortBy.selectedOptions[0].dataset.filterSort;
+    let sortByDirection = sortBy.selectedOptions[0].dataset.filterSortDirection;
+    console.dir(sortBy)
 
     let url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts?_embed`
     if (itemsPerPage ) url += `&per_page=${itemsPerPage}`
@@ -36,6 +38,8 @@ function updateUrl() {
     if (topicValue) url += `&categories=${topicValue}`
     if (searchValue) url += `&search=${searchValue}`
     if (sortByValue) url += `&orderby=${sortByValue}`
+    if (sortByDirection) url += `&order=${sortByDirection}`
+    console.log(url)
     return url
 } 
 
@@ -56,10 +60,6 @@ loadContent();
 async function createBlogPage() {
     const results = await response.json();
     const totalPages = parseFloat(response.headers.get("x-wp-totalPages"))
-
-    console.log(results)
-    console.log(pageIndex)
-    console.log(totalPages)
     createHtml(results, pageIndex, totalPages)
 
     if(pageIndex >= totalPages) return viewMore.remove() // guard clause check for last page}

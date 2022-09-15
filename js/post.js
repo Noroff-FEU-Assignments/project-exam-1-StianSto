@@ -48,50 +48,43 @@ function createPost(post, img) {
 function modal() {
 
     const images = article.querySelectorAll("img");
+    images.forEach( img => img.addEventListener("click", openModal))
 
-    images.forEach( img => {
-        img.addEventListener("click", openModal)
-})
-
-const modal = document.createElement("div");
-modal.addEventListener("click", closeModal)
+    const modal = document.createElement("div");
+    modal.addEventListener("click", closeModal)
 
 
-function openModal() {
+    function openModal() {
 
-    modal.style.display = "flex"
-    
-    //clone targeted img and paste into modal 
-    let img = this.cloneNode(true)
-    const imgAlt = document.createElement("p");
-    imgAlt.innerText = img.alt
-    // const imgContainer = document.createElement("div")
+        modal.style.display = "flex"
+        
+        //clone targeted img and paste into modal 
+        let img = this.cloneNode()
+        const imgAlt = document.createElement("p");
+        imgAlt.innerText = img.alt
 
-    modal.classList.add("modal");
-    console.log(imgAlt)
-    
-    modal.appendChild(img);
-    modal.appendChild(imgAlt);
-    // modal.appendChild(imgContainer)
-    body.appendChild(modal)
-    body.classList.add("disable-scroll")
+        modal.classList.add("modal");
+        console.log(imgAlt)
+        
+        modal.appendChild(img);
+        modal.appendChild(imgAlt);
+        body.appendChild(modal)
+        body.classList.add("disable-scroll")
 
-    setTimeout( () => modal.style.opacity = "1", 0)
+        setTimeout( () => modal.style.opacity = "1", 0)
+    }
+
+
+    function closeModal(event) {
+
+        const modal = document.querySelector(".modal")
+        if(event.target !== modal) return;
+
+        modal.style.opacity = "0";
+        setTimeout( () => {
+            modal.style.display = "none"
+            body.classList.remove("disable-scroll")
+            modal.innerHTML = "";
+        }, 300) 
+    }
 }
-
-function closeModal(event) {
-
-    const modal = document.querySelector(".modal")
-
-    if(event.target !== modal) return console.log(2);
-
-    modal.style.opacity = "0";
-    setTimeout( () => {
-        modal.style.display = "none"
-        body.classList.remove("disable-scroll")
-        modal.innerHTML = "";
-    }, 300) 
-}
-}
-
-
