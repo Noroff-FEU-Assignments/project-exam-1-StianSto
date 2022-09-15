@@ -39,7 +39,7 @@
         </div>
         <div id="filter-container" class="container max-width-1000 margin-center">
             <input class="input-field" id="input-search" type="text" placeholder="search posts">
-            <select class="input-field" name="toic" id="topic">
+            <select class="input-field" name="topic" id="topic">
                 <option value="">select topic</option>
                 <option value="31" data-topic-id="31">Brewing</option>
                 <option value="32" data-topic-id="32">Coffee Beans</option>
@@ -47,17 +47,13 @@
             </select>
             <select class="input-field" name="sort-by" id="sort-by">
                 <option value="">Sort by</option>
-                <option value="date-newest" data-filter-sort-date="newest">Newest -> oldest</option>
-                <option value="date-oldest" data-filter-sort-date="oldest">Oldest -> Newest</option>
+                <option value="date-newest" data-filter-sort="date" data-filter-sort-direction="desc">Most recent</option>
+                <option value="date-oldest" data-filter-sort="date" data-filter-sort-direction="asc">Oldest</option>
             </select>
             <button id="filter-posts">Search</button>
         </div>
         <div class="blog-section"></div>
     </main>
-    <!-- <div id="view-more">
-        <p>click to view more</p>
-        <i class="fa-solid fa-chevron-down"></i>
-    </div> -->
     <footer class=" | section-space"></footer>
 </body>
 </html>

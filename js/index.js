@@ -40,7 +40,7 @@ function createSlider(array, slider) {
 
     array.forEach( post => {
 
-        // sets default image for post image, and checks ig featured image has been embedded to post api. overwrites deafult and adds the embedded image.
+        // sets default image for post image, and checks if featured image has been embedded to post api. overwrites deafult and adds the embedded image.
         featuredMedia = "../assets/images/stock-photo-coffee-in-blue-cup-on-wooden-table-in-cafe-with-lighting-background-1387420256.jpg"
         if (post._embedded["wp:featuredmedia"]) featuredMedia = post._embedded["wp:featuredmedia"][0].source_url
        
@@ -83,3 +83,4 @@ function setSlidePostWidth() {
 
 setSlidePostWidth();
 window.onresize = setSlidePostWidth;
+

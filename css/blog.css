@@ -1,5 +1,8 @@
 main {
     flex: 1; /* main takes up enough space to fill whole page*/
+}
+
+main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     padding: 0.5rem;
 }
 
@@ -103,12 +106,35 @@ main {
 }
 
 .featured-post {
+    display: flex;
+    flex-flow: row wrap;
+    background: var(--clr-primary-200);
     width: 100%;
     max-width: var(--max-width-1000);
-    margin-inline: auto;
-    height: 100px;
-    background: var(--clr-primary-200);
+    min-height: 200px;
     margin-block: 2rem;
+    margin-inline: auto;
+}
+
+.featured-post__img {
+    aspect-ratio: 16/9;
+    flex: 2 3;
+    background-size: cover;
+    background-position: 35% 50%;
+    min-width: 250px;
+}
+
+.featured-post__text {
+    flex: 3 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
+    margin: 1em;
+    min-width: 250px;
+}
+
+.featured-post__text > * {
+    margin: 0;
 }
 
 #view-more {
