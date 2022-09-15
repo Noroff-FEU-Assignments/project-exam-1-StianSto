@@ -1,6 +1,5 @@
 document.querySelector("#nav--blog-posts").classList.add("active")
 
-
 const main = document.querySelector("main");    
 const blogSection = document.querySelector(".blog-section");    
 const topic = document.querySelector("#topic");
@@ -15,6 +14,19 @@ search.addEventListener("keypress", (event) =>  {
         filterBtn.click();
     }
 })
+
+// get values from query
+const queryString = document.location.search;
+const parameter = new URLSearchParams(queryString);
+//// topic
+const queryTopicid = parseFloat(parameter.get("topic"));
+const setSelectedTopic = topic.querySelector(`[data-topic-id="${queryTopicid}"]`);
+if (setSelectedTopic) { setSelectedTopic.selected = true; }
+//// search 
+const querySearch = parameter.get("search")
+search.value = querySearch
+console.log(querySearch)
+
 
 let response = [];
 let pageIndex = 1;
@@ -148,15 +160,17 @@ function createViewMore() {
 
 let featuredIndex = 0;
 function addFeaturedPost(arr) {
-    console.log(arr[featuredIndex])
-
     let post = arr[featuredIndex];
+    console.log(post.excerpt)
     let featuredMedia;
     if (post._embedded["wp:featuredmedia"]) featuredMedia = post._embedded["wp:featuredmedia"][0].source_url;
 console.log(featuredMedia)
     let html = `
         <div class="featured-post__img" style="background-image: url(${featuredMedia})"></div>
-        <div class="featured-post__text"><h2>${post.title.rendered}</h2></div>
+        <div class="featured-post__text">
+            <h2>${post.title.rendered}</h2>
+            <p>${post.excerpt.rendered}</p>
+        </div>
     `
 
 

@@ -14,16 +14,16 @@ header.innerHTML = `
         <i class="nav-close fa-solid fa-xmark"></i>
         <div class="nav-search">
             <button class="btn btn btn--search btn--tactile"><i class="fa-solid fa-magnifying-glass"></i></button>
-            <input type="text" placeholder="search here">
+            <input type="text" id="search-field" placeholder="search here">
         </div>
         <ul class=" | margin-inline">
             <li id="nav--home"><a href="../index.html">Home</a></li>
             <li id="nav--blog-posts"><a href="../blog.html">Blog Posts</a></li>
             <li id="nav--topics">Topics<i class="fa-solid fa-chevron-down"></i>
                 <ul id="nav--topics__menu">
-                    <li><a href="">Beans</a></li>
-                    <li><a href="">Brewing</a></li>
-                    <li><a href="">Café's</a></li>
+                    <li><a href="blog.html?topic=31">Brewing</a></li>
+                    <li><a href="blog.html?topic=32">Beans</a></li>
+                    <li><a href="blog.html?topic=33">Café's</a></li>
                 </ul>
             </li>
             <li id="nav--contact"><a href="contact.html">Contact</a></li>
@@ -33,6 +33,15 @@ header.innerHTML = `
     </nav>
 `
 //
+
+const searchBtn = document.querySelector(".btn--search")
+const searchField = document.querySelector("#search-field")
+searchBtn.addEventListener("click", searchSite)
+searchField.addEventListener("keypress", (event) => {if(event.key === "Enter") searchSite() })
+
+function searchSite() { 
+    window.location.href = `blog.html?search=${searchField.value}`;
+}
 
 
 // navbar

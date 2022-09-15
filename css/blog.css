@@ -118,15 +118,23 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
 
 .featured-post__img {
     aspect-ratio: 16/9;
-    flex: 2;
+    flex: 2 3;
     background-size: cover;
-    min-width: min(100%, 250px);
+    background-position: 35% 50%;
+    min-width: 250px;
 }
 
 .featured-post__text {
-    flex: 3;
+    flex: 3 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
     margin: 1em;
-    min-width: 200px;
+    min-width: 250px;
+}
+
+.featured-post__text > * {
+    margin: 0;
 }
 
 #view-more {
