@@ -20,11 +20,7 @@ header.innerHTML = `
             <li id="nav--home"><a href="../index.html">Home</a></li>
             <li id="nav--blog-posts"><a href="../blog.html">Blog Posts</a></li>
             <li id="nav--topics">Topics<i class="fa-solid fa-chevron-down"></i>
-                <ul id="nav--topics__menu">
-                    <li><a href="blog.html?topic=31">Brewing</a></li>
-                    <li><a href="blog.html?topic=32">Beans</a></li>
-                    <li><a href="blog.html?topic=33">Café's</a></li>
-                </ul>
+                <ul id="nav--topics__menu"></ul>
             </li>
             <li id="nav--contact"><a href="contact.html">Contact</a></li>
             <li id="nav--about"><a href="about.html">About</a></li>
@@ -77,3 +73,58 @@ function openNav() {
 
 const primaryNavMenu = document.querySelector("#primary-nav-menu");
 primaryNavMenu.addEventListener("click", openNav);
+
+
+async function topicsNavbar() {
+    const topicsMenu = document.querySelector("#nav--topics__menu");
+    const urlTopics = "https://snakesandbeans.com/wp-json/wp/v2/categories"
+    const response = await fetch(urlTopics);
+    const results = await response.json();
+    let html = "";
+    results.forEach( topic => {
+        if (topic.id === 1 ) return; // skips uncategorized category
+        html += `<li><a href="blog.html?topic=${topic.id}">${topic.name}</a></li>`
+    })
+    topicsMenu.innerHTML = html;
+
+
+    const topicsList = document.querySelector(".topics-section ul");
+    if(topicsList) topicsListInsert(results, topicsList);
+
+    
+}
+topicsNavbar();
+
+async function topicsListInsert(topics, container) {
+        // uses same results on index page and others who have a topics-list
+   
+        const urlMedia = "https://snakesandbeans.com/wp-json/wp/v2/media"
+        const response = await fetch(urlMedia);
+        const results = await response.json();
+
+        let html = "";
+        let mediaID ;
+    
+        topics.forEach( topic => {
+            if (topic.id === 1 ) return; // skips uncategorized category
+            // sets up for finding right media
+            if (topic.id === 31) mediaID = 123;
+            if (topic.id === 32) mediaID = 117;
+            if (topic.id === 33) mediaID = 124;
+
+            let topicMedia = results.find( media => media.id === mediaID)
+            console.log(topicMedia)
+            let sourceUrl = topicMedia.media_details.sizes.medium_large.source_url;
+            console.log(sourceUrl)
+
+            html += `
+            <li>
+                <a href="blog.html?topic=${topic.id}">
+                    <div class="topics-section__img" data-topic-id="${topic.id}" style="background-image:url(${sourceUrl})"></div>
+                    <h3 class="topics-section__title">${topic.name}</h3>
+                </a>
+            </li>`
+        })
+        container.innerHTML = html;   
+}
+

@@ -73,6 +73,7 @@
 .flex-spread {display: flex; justify-content: space-between;}
 .overflow-x-hidden { overflow-x: hidden; }
 .disable-scroll { overflow: hidden;}
+.text-center {text-align: center;}
 
 @media only screen and (min-width: 769px) {
     :root {
@@ -140,6 +141,7 @@ li, p {
     padding: 1rem;
     font-size: var(--fs-300);
     font-family: var(--ff-secondary);
+    border: 1px solid var(--clr-primary-400);
     border-radius: 5px;
 }
 
@@ -204,7 +206,7 @@ li, p {
 
 .breadcrumbs {
     font-size: var(--fs-300);
-    margin: 1em 0 0 1em;
+    margin: 1em 0 1em 1em;
     font-family: var(--ff-secondary);
     font-weight: 300;
     cursor: default;
@@ -254,26 +256,28 @@ footer {
 }
 
 .logo {
-    flex: 2fr;
-    margin-block: 1em 0.5em;
+    height: 100%;
+    /* margin-block: 1em 0.5em; */
 }
 
 .logo img {
-    width: 80%;
-    height: 4.5rem;
+    /* width: 80%; */
+    height: calc(100% - 1em);
+    margin-block: 0.5em;
 }
 
 #primary-nav-menu {
-    flex: 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 40px;
 }
 
 #primary-nav-menu > * {
     height: 5px;
-    width: 50px;
+    width: 100%;
     background-color: var(--clr-primary-200);
     border-radius: 5px;
-    margin-bottom: 0.75em;
-    margin-top: 0.75em;
 }
 
 #primary-nav {
@@ -322,7 +326,7 @@ footer {
 
 #nav--topics__menu {
     flex-direction: column;
-    gap: 1em;
+    gap: 0.5rem;
     display: none;
 }
 
@@ -489,3 +493,35 @@ footer {
 
 }
 
+/* modal for clicked images */
+.modal {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    transition: all 250ms ease-in;
+}
+
+.modal > * {
+    max-width: 60vw;
+    max-height: 60vh;
+    width: auto;
+    height: auto;
+    color: white;
+}
+
+.modal img{
+    object-fit: contain;
+    border: 20px solid var(--clr-primary-200);
+    padding: 10px;
+    background-color: var(--clr-primary-700);
+}

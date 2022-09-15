@@ -1,3 +1,5 @@
+import { imageModal } from "./functions/image-modal.js";
+
 const queryString = document.location.search;
 const parameter = new URLSearchParams(queryString);
 const postID = parseFloat(parameter.get("id"));
@@ -23,7 +25,7 @@ async function fetchApi() {
     createPost(post, featuredImg)    
 
     // add modal eventlisteners
-    modal();
+    imageModal(article);
 }
 fetchApi();
 
@@ -44,47 +46,47 @@ function createPost(post, img) {
 }
 
 
-// modal functions
-function modal() {
+// // modal functions
+// function modal() {
 
-    const images = article.querySelectorAll("img");
-    images.forEach( img => img.addEventListener("click", openModal))
+//     const images = article.querySelectorAll("img");
+//     images.forEach( img => img.addEventListener("click", openModal))
 
-    const modal = document.createElement("div");
-    modal.addEventListener("click", closeModal)
+//     const modal = document.createElement("div");
+//     modal.addEventListener("click", closeModal)
 
 
-    function openModal() {
+//     function openModal() {
 
-        modal.style.display = "flex"
+//         modal.style.display = "flex"
         
-        //clone targeted img and paste into modal 
-        let img = this.cloneNode()
-        const imgAlt = document.createElement("p");
-        imgAlt.innerText = img.alt
+//         //clone targeted img and paste into modal 
+//         let img = this.cloneNode()
+//         const imgAlt = document.createElement("p");
+//         imgAlt.innerText = img.alt
 
-        modal.classList.add("modal");
-        console.log(imgAlt)
+//         modal.classList.add("modal");
+//         console.log(imgAlt)
         
-        modal.appendChild(img);
-        modal.appendChild(imgAlt);
-        body.appendChild(modal)
-        body.classList.add("disable-scroll")
+//         modal.appendChild(img);
+//         modal.appendChild(imgAlt);
+//         body.appendChild(modal)
+//         body.classList.add("disable-scroll")
 
-        setTimeout( () => modal.style.opacity = "1", 0)
-    }
+//         setTimeout( () => modal.style.opacity = "1", 0)
+//     }
 
 
-    function closeModal(event) {
+//     function closeModal(event) {
 
-        const modal = document.querySelector(".modal")
-        if(event.target !== modal) return;
+//         const modal = document.querySelector(".modal")
+//         if(event.target !== modal) return;
 
-        modal.style.opacity = "0";
-        setTimeout( () => {
-            modal.style.display = "none"
-            body.classList.remove("disable-scroll")
-            modal.innerHTML = "";
-        }, 300) 
-    }
-}
+//         modal.style.opacity = "0";
+//         setTimeout( () => {
+//             modal.style.display = "none"
+//             body.classList.remove("disable-scroll")
+//             modal.innerHTML = "";
+//         }, 300) 
+//     }
+// }

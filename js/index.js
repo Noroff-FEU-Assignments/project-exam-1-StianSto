@@ -83,3 +83,4 @@ function setSlidePostWidth() {
 
 setSlidePostWidth();
 window.onresize = setSlidePostWidth;
+

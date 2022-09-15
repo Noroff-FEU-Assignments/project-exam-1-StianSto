@@ -23,10 +23,9 @@ const queryTopicid = parseFloat(parameter.get("topic"));
 const setSelectedTopic = topic.querySelector(`[data-topic-id="${queryTopicid}"]`);
 if (setSelectedTopic) { setSelectedTopic.selected = true; }
 //// search 
-const querySearch = parameter.get("search")
-search.value = querySearch
-console.log(querySearch)
-
+const querySearch = parameter.get("search");
+search.value = querySearch;
+//
 
 let response = [];
 let pageIndex = 1;
@@ -48,11 +47,7 @@ async function getFeaturedPosts() {
     const urlFeaturedPosts = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/?tags=${editorsPickTag.id}&_embed`
     const featuredPosts = await fetch(urlFeaturedPosts);   
     featuredArr = await featuredPosts.json();
-    console.log(featuredArr)
 }
-
-    
-
 
 
 function updateUrl() {
@@ -61,7 +56,6 @@ function updateUrl() {
     let searchValue = search.value.trim().replaceAll(" ", "+"); // creates a serachable string
     let sortByValue = sortBy.selectedOptions[0].dataset.filterSort;
     let sortByDirection = sortBy.selectedOptions[0].dataset.filterSortDirection;
-    console.dir(sortBy)
 
     let url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts?_embed`
     if (itemsPerPage ) url += `&per_page=${itemsPerPage}`
@@ -70,13 +64,11 @@ function updateUrl() {
     if (searchValue) url += `&search=${searchValue}`
     if (sortByValue) url += `&orderby=${sortByValue}`
     if (sortByDirection) url += `&order=${sortByDirection}`
-    console.log(url)
     return url
 } 
 
 
 async function preLoad(url) { response = await fetch(url); }
-
 async function loadContent(){
     blogSection.innerHTML = "please wait while the site is brewing :)";
     let newURL = updateUrl();
@@ -95,9 +87,8 @@ async function createBlogPage() {
 
     if(pageIndex >= totalPages) return viewMore.remove() // guard clause check for last page}
 
-    await getFeaturedPosts()
+    await getFeaturedPosts();
     addFeaturedPost(featuredArr);
-    //
 
     pageIndex++
     newURL = updateUrl()
@@ -113,9 +104,7 @@ function createHtml(arr) {
     const flexMosaicRight = document.createElement("div");
     flexMosaicRight.classList.add("flex-mosaic");
 
-
     let index = 0;
-
     arr.forEach( i => {
         let featuredMedia = "";
         if (i._embedded["wp:featuredmedia"]) featuredMedia = i._embedded["wp:featuredmedia"][0].source_url
@@ -161,10 +150,9 @@ function createViewMore() {
 let featuredIndex = 0;
 function addFeaturedPost(arr) {
     let post = arr[featuredIndex];
-    console.log(post.excerpt)
     let featuredMedia;
     if (post._embedded["wp:featuredmedia"]) featuredMedia = post._embedded["wp:featuredmedia"][0].source_url;
-console.log(featuredMedia)
+
     let html = `
         <div class="featured-post__img" style="background-image: url(${featuredMedia})"></div>
         <div class="featured-post__text">
@@ -177,9 +165,8 @@ console.log(featuredMedia)
     const featuredPost = document.createElement("div")
     featuredPost.classList.add("featured-post")
 
-
     featuredPost.innerHTML = html;
     blogSection.appendChild(featuredPost)
+    featuredIndex < arr.length ? featuredIndex++ : featuredIndex = 0; //resets index so there will always be a featured post
 
-    featuredIndex < arr.length ? featuredIndex++ : featuredIndex = 0;
 }

@@ -177,7 +177,7 @@
     gap: 1.5em;
 }
 
-.topics-section ul > li {
+.topics-section ul > li > a {
     display: flex;
     align-items: center;
     gap: 1em;
@@ -194,13 +194,7 @@
     background-position: center;
 }
 
-.topics-section__img[data-topic="brewing"] {
-    background-image: url(../assets/images/stock-photo-coffee-in-blue-cup-on-wooden-table-in-cafe-with-lighting-background-1387420256.jpg);
-}
-.topics-section__img[data-topic="coffee-beans"] {
-    background-image: url(../assets/images/stock-photo-coffee-in-blue-cup-on-wooden-table-in-cafe-with-lighting-background-1387420256.jpg);
-}
-.topics-section__img[data-topic="cafe"] {
+.topics-section__img {
     background-image: url(../assets/images/stock-photo-coffee-in-blue-cup-on-wooden-table-in-cafe-with-lighting-background-1387420256.jpg);
 }
 

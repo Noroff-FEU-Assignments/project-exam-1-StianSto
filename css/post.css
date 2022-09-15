@@ -111,38 +111,6 @@ article img {
 .float-left {float: left;}
 /**/
 
-/* modal for clicked images */
-.modal {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    opacity: 0;
-    transition: all 250ms ease-in;
-}
-
-.modal > * {
-    max-width: 60vw;
-    max-height: 60vh;
-    width: auto;
-    height: auto;
-    color: white;
-}
-
-.modal img{
-    object-fit: contain;
-    border: 20px solid var(--clr-primary-200);
-    padding: 10px;
-    background-color: var(--clr-primary-700);
-}
 
 @media only screen and (min-width: 769px){
     .hero-post__container {
