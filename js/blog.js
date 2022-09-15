@@ -6,7 +6,7 @@ const blogSection = document.querySelector(".blog-section");
 const topic = document.querySelector("#topic");
 const sortBy = document.querySelector("#sort-by");
 const search = document.querySelector("#input-search");
-const filterBtn = document.querySelector("#filter-posts") 
+const filterBtn = document.querySelector("#filter-posts");
 // filterBtn.addEventListener("click", createBlogPage)
 filterBtn.addEventListener("click", filterPage);
 search.addEventListener("keypress", (event) =>  {
@@ -23,6 +23,25 @@ function filterPage() {
     pageIndex = 1;
     loadContent();
 }
+
+let featuredArr = [];
+async function getFeaturedPosts() {
+
+    // get featured posts tag
+    const urlTags = "https://www.snakesandbeans.com/wp-json/wp/v2/tags";
+    const responseTags = await fetch(urlTags);
+    const resultsTags = await responseTags.json();
+    const editorsPickTag = resultsTags.find( tag => tag.slug === "editors-pick" );
+    // get featured posts
+    const urlFeaturedPosts = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/?tags=${editorsPickTag.id}&_embed`
+    const featuredPosts = await fetch(urlFeaturedPosts);   
+    featuredArr = await featuredPosts.json();
+    console.log(featuredArr)
+}
+
+    
+
+
 
 function updateUrl() {
     let itemsPerPage = 6;
@@ -63,7 +82,10 @@ async function createBlogPage() {
     createHtml(results, pageIndex, totalPages)
 
     if(pageIndex >= totalPages) return viewMore.remove() // guard clause check for last page}
-    addFeaturedPost();
+
+    await getFeaturedPosts()
+    addFeaturedPost(featuredArr);
+    //
 
     pageIndex++
     newURL = updateUrl()
@@ -124,9 +146,26 @@ function createViewMore() {
     viewMoreClickHandler.addEventListener("mouseleave", () => viewMoreClickHandler.classList.remove("bounce-arrow"));
 }
 
-function addFeaturedPost() {
+let featuredIndex = 0;
+function addFeaturedPost(arr) {
+    console.log(arr[featuredIndex])
+
+    let post = arr[featuredIndex];
+    let featuredMedia;
+    if (post._embedded["wp:featuredmedia"]) featuredMedia = post._embedded["wp:featuredmedia"][0].source_url;
+console.log(featuredMedia)
+    let html = `
+        <div class="featured-post__img" style="background-image: url(${featuredMedia})"></div>
+        <div class="featured-post__text"><h2>${post.title.rendered}</h2></div>
+    `
+
+
     const featuredPost = document.createElement("div")
     featuredPost.classList.add("featured-post")
-    featuredPost.innerHTML = "";
+
+
+    featuredPost.innerHTML = html;
     blogSection.appendChild(featuredPost)
+
+    featuredIndex < arr.length ? featuredIndex++ : featuredIndex = 0;
 }
