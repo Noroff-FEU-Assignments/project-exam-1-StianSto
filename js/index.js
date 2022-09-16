@@ -3,7 +3,7 @@ import { createSliders } from "./functions/create-sliders.js";
 document.querySelector("#nav--home").classList.add("active")
 
 const urlTags = "https://www.snakesandbeans.com/wp-json/wp/v2/tags"
-const urlRecentTenPosts = `https://www.snakesandbeans.com/wp-json/wp/v2/posts?per_page=10&_embed`;
+const urlRecentTenPosts = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/?per_page=10&_embed`;
 const recentSlider = document.querySelector('.slider[data-slider="recent-posts"]')
 const editorsSlider = document.querySelector('.slider[data-slider="editors-pick-posts"]');
 
@@ -14,7 +14,7 @@ async function fetchTags() {
     let results = await response.json(); 
     const editorsPickTag = results.find( tag => tag.slug === "editors-pick" ) 
     const editorsPickTagID = editorsPickTag.id
-    const newUrl = `https://snakesandbeans.com/wp-json/wp/v2/posts?tags=${editorsPickTagID}&_embed`
+    const newUrl = `https://snakesandbeans.com/wp-json/wp/v2/posts/?tags=${editorsPickTagID}&_embed`
 
     fetchApi(newUrl, editorsSlider)
 }
@@ -42,7 +42,8 @@ function createSlider(array, slider) {
 
         // sets default image for post image, and checks if featured image has been embedded to post api. overwrites deafult and adds the embedded image.
         featuredMedia = "../assets/images/stock-photo-coffee-in-blue-cup-on-wooden-table-in-cafe-with-lighting-background-1387420256.jpg"
-        if (post._embedded["wp:featuredmedia"]) featuredMedia = post._embedded["wp:featuredmedia"][0].source_url
+        if (post._embedded["wp:featuredmedia"]) featuredMedia = post._embedded["wp:featuredmedia"][0].media_details.sizes.medium_large.source_url;
+        console.log(featuredMedia)
        
         //create html for post. 
         html += `

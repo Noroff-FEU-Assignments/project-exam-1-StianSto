@@ -5,6 +5,10 @@ const parameter = new URLSearchParams(queryString);
 const postID = parseFloat(parameter.get("id"));
 const article = document.querySelector("article")
 const currentPage = document.querySelector("#current-page")
+const h1 = document.querySelector("h1")
+const featuredImg = document.querySelector("#hero-picture"); 
+
+let featuredImgSize = featuredImg.getBoundingClientRect().width; 
 
 // fetch api 
 const url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/${postID}?_embed`;
@@ -17,11 +21,15 @@ async function fetchApi() {
     console.log(post)
 
     // check if featureed image is embedded
+
+
     let featuredImg = "";
     if (post._embedded["wp:featuredmedia"]) {
-        featuredImg = post._embedded["wp:featuredmedia"][0].source_url
+        // load image with appropriate size
+        featuredImgSize > 800 
+            ? featuredImg += post._embedded["wp:featuredmedia"][0].media_details.sizes.large.source_url
+            : featuredImg += post._embedded["wp:featuredmedia"][0].media_details.sizes.medium_large.source_url;
     }
-
     createPost(post, featuredImg)    
 
     // add modal eventlisteners
@@ -34,9 +42,6 @@ fetchApi();
 function createPost(post, img) {
 
     // insert title, h1 and featured image (hero)
-    const h1 = document.querySelector("h1")
-    const featuredImg = document.querySelector("#hero-picture"); 
-
     document.title = post.title.rendered + " | The Daily Brew"
     h1.innerText = post.title.rendered
     featuredImg.style.backgroundImage = `url("${img}")`
