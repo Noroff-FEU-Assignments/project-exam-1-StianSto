@@ -121,7 +121,7 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     flex: 2 3;
     background-size: cover;
     background-position: 35% 50%;
-    min-width: 250px;
+    min-width: min(100vw, 250px);
 }
 
 .featured-post__text {
@@ -129,8 +129,8 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     display: flex;
     flex-direction: column;
     justify-content: center ;
-    margin: 1em;
-    min-width: 250px;
+    padding: 1em;
+    min-width: min(100vw, 250px);
 }
 
 .featured-post__text > * {
@@ -174,5 +174,4 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
 
 footer {
     min-height: 30vh;
-    z-index: 100;
 }

@@ -152,10 +152,10 @@
 @media only screen and (min-width: 769px){
     .fun-fact {
         padding: 5rem;
-        background: linear-gradient(90deg, var(--clr-secondary-1000) 0% 50%, transparent 100%), url("../assets/images/stock-photo-coffee-in-blue-cup-on-wooden-table-in-cafe-with-lighting-background-1387420256.jpg");
-        background-size: initial, 10%;
+        background: linear-gradient(90deg, var(--clr-secondary-1000) 0% 50%, transparent 100%), url("https://snakesandbeans.com/wp-content/uploads/2022/09/shutterstock_1387420256-1024x683.jpg");
+        background-size: auto, 70%;
         background-repeat: no-repeat;
-        background-position: right;
+        background-position: 100% 70%;
         color: var(--clr-primary-200);
     }
     
