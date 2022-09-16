@@ -108,14 +108,12 @@ async function topicsListInsert(topics, container) {
         topics.forEach( topic => {
             if (topic.id === 1 ) return; // skips uncategorized category
             // sets up for finding right media
-            if (topic.id === 31) mediaID = 123;
-            if (topic.id === 32) mediaID = 117;
-            if (topic.id === 33) mediaID = 124;
+            if (topic.id === 31) mediaID = 224;
+            if (topic.id === 32) mediaID = 226;
+            if (topic.id === 33) mediaID = 225;
 
             let topicMedia = results.find( media => media.id === mediaID)
-            console.log(topicMedia)
-            let sourceUrl = topicMedia.media_details.sizes.medium_large.source_url;
-            console.log(sourceUrl)
+            let sourceUrl = topicMedia.source_url;
 
             html += `
             <li>

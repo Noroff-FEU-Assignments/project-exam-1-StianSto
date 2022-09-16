@@ -73,9 +73,7 @@ h1 {
 
 figure {
     width: 100%; /* default */
-    /* max-height: 80vh; */
     overflow: hidden;
-    background: grey; /* default */
     min-height: 50px;
     margin-block: 1em;
 }
