@@ -504,7 +504,7 @@ footer {
 
     #nav--topics__menu {
         position: absolute;
-        width: 100%;
+        width: max(100%, fit-content);
         top: 100%;
         left: 0;
         background-color: var(--clr-primary-700);
@@ -551,4 +551,28 @@ footer {
     border: 20px solid var(--clr-primary-200);
     padding: 10px;
     background-color: var(--clr-primary-700);
+}
+
+
+
+.loading {
+    width: clamp(50px, 20% ,200px);
+    font-size: clamp(10px, 1vw ,100px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1.5em solid white;
+    border-top: 1.5em solid var(--clr-accent-200);
+    animation: loading 1250ms infinite linear ;
+    margin-inline: auto;
+}
+
+@keyframes loading {
+    100% {rotate: 360deg}
+}
+
+.loading--text {
+    font-size: var(--fs-400);
+    width: fit-content;
+    margin-inline: auto;
 }

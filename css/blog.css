@@ -27,8 +27,24 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     display: flex;
     flex-wrap: wrap;
     gap: 1em;
-    padding-bottom: 2em;
+    transform-origin: top;
+    height: auto;
+    max-height: 0px;
+    scale: 1 0;
+    transition: all 200ms ease;
 }
+
+#filter-container.open {
+    max-height: 30vh;
+    scale: 1 1;
+
+}
+
+/* @media only screen and (min-width:769px) {
+    #filter-container.open {
+        max-height: 50rem;
+    }
+} */
 
 #filter-container > * {
     flex: 1;
@@ -59,8 +75,13 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     flex: 1;
 }
 
+.flex-mosaic > a {
+    flex: 1;
+}
+
 .tile {
-    flex: 7;
+    flex: 1;
+    height: 100%;
     background-color: var(--clr-secondary-1000);
     color: white;
     border: 2px solid var(--clr-primary-200);
@@ -73,7 +94,7 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     background: url(../assets/images/stock-photo-coffee-in-blue-cup-on-wooden-table-in-cafe-with-lighting-background-1387420256.jpg) no-repeat;
     background-size: cover;
     background-position: center;
-    flex-grow: 1;
+    flex: 1;
     min-height: 20%;
     aspect-ratio: 3 / 2;
 }
