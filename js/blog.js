@@ -14,6 +14,22 @@ search.addEventListener("keypress", (event) =>  {
         filterBtn.click();
     }
 })
+//create view more element
+const viewMore = document.createElement('div')
+viewMore.setAttribute("id", "view-more")
+viewMore.innerHTML = `
+    <div class="view-more-clickhandler"> 
+        <p>click to view more</p>
+        <i class="fa-solid fa-chevron-down"></i>
+    </div>
+`
+function createViewMore() {
+    main.after(viewMore)
+    const viewMoreClickHandler = document.querySelector(".view-more-clickhandler")
+    viewMoreClickHandler.addEventListener("click", () => createBlogPage());
+    viewMoreClickHandler.addEventListener("mouseenter", () => viewMoreClickHandler.classList.add("bounce-arrow"));
+    viewMoreClickHandler.addEventListener("mouseleave", () => viewMoreClickHandler.classList.remove("bounce-arrow"));
+}
 
 // get values from query
 const queryString = document.location.search;
@@ -70,7 +86,8 @@ function updateUrl() {
 
 async function preLoad(url) { response = await fetch(url); }
 async function loadContent(){
-    blogSection.innerHTML = "please wait while the site is brewing :)";
+    viewMore.remove();
+    blogSection.innerHTML = `<div class="loading"></div><p class="loading--text">Brewing search results</p>`;
     let newURL = updateUrl();
     await preLoad(newURL);
     blogSection.innerHTML= "";
@@ -129,24 +146,6 @@ function createHtml(arr) {
     blogSection.appendChild(containerMosaic)
 }
 
-
-const viewMore = document.createElement('div')
-viewMore.setAttribute("id", "view-more")
-viewMore.innerHTML = `
-    <div class="view-more-clickhandler"> 
-        <p>click to view more</p>
-        <i class="fa-solid fa-chevron-down"></i>
-    </div>
-`
-
-function createViewMore() {
-    main.after(viewMore)
-    const viewMoreClickHandler = document.querySelector(".view-more-clickhandler")
-    viewMoreClickHandler.addEventListener("click", () => createBlogPage());
-    viewMoreClickHandler.addEventListener("mouseenter", () => viewMoreClickHandler.classList.add("bounce-arrow"));
-    viewMoreClickHandler.addEventListener("mouseleave", () => viewMoreClickHandler.classList.remove("bounce-arrow"));
-}
-
 let featuredIndex = 0;
 function addFeaturedPost(arr) {
     let post = arr[featuredIndex];
@@ -169,4 +168,11 @@ function addFeaturedPost(arr) {
     blogSection.appendChild(featuredPost)
     featuredIndex < arr.length ? featuredIndex++ : featuredIndex = 0; //resets index so there will always be a featured post
 
+}
+
+const filterItemsBtn = document.querySelector("#filter-items-btn");
+const filterItemsContainer = document.querySelector("#filter-container");
+filterItemsBtn.onclick = showFilter;
+function showFilter() {
+    filterItemsContainer.classList.toggle("open")
 }

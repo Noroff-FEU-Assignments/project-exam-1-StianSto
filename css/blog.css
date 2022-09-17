@@ -27,10 +27,26 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     display: flex;
     flex-wrap: wrap;
     gap: 1em;
-    padding-bottom: 2em;
+    transform-origin: top;
+    height: auto;
+    max-height: 0px;
+    scale: 1 0;
+    transition: all 200ms ease;
 }
 
-#filter-container > * {
+#filter-container.open {
+    max-height: 40vh;
+    scale: 1 1;
+
+}
+
+/* @media only screen and (min-width:769px) {
+    #filter-container.open {
+        max-height: 50rem;
+    }
+} */
+
+#filter-container > *:not(#filter-posts) {
     flex: 1;
 }
 
@@ -38,6 +54,12 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     flex: 2;
     max-width: 40ch;
     min-width: 20ch;
+}
+
+#filter-posts {
+    padding: 0.5em 1em;
+    font-size: var(--fs-300);
+    margin-inline: auto;
 }
 
 .container-mosaic {
@@ -59,8 +81,13 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     flex: 1;
 }
 
+.flex-mosaic > a {
+    flex: 1;
+}
+
 .tile {
-    flex: 7;
+    flex: 1;
+    height: 100%;
     background-color: var(--clr-secondary-1000);
     color: white;
     border: 2px solid var(--clr-primary-200);
@@ -73,7 +100,7 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     background: url(../assets/images/stock-photo-coffee-in-blue-cup-on-wooden-table-in-cafe-with-lighting-background-1387420256.jpg) no-repeat;
     background-size: cover;
     background-position: center;
-    flex-grow: 1;
+    flex: 1;
     min-height: 20%;
     aspect-ratio: 3 / 2;
 }
@@ -121,7 +148,7 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     flex: 2 3;
     background-size: cover;
     background-position: 35% 50%;
-    min-width: 250px;
+    min-width: min(100vw, 250px);
 }
 
 .featured-post__text {
@@ -129,8 +156,8 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     display: flex;
     flex-direction: column;
     justify-content: center ;
-    margin: 1em;
-    min-width: 250px;
+    padding: 1em;
+    min-width: min(100vw, 250px);
 }
 
 .featured-post__text > * {
@@ -174,5 +201,4 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
 
 footer {
     min-height: 30vh;
-    z-index: 100;
 }

@@ -5,13 +5,12 @@ header.innerHTML = `
     <a href="index.html" class="logo">
         <img src="assets/logo-the-daily-brew.svg" alt="">
     </a>
-    <div id="primary-nav-menu">
+    <div id="primary-nav-btn" aria-expanded="false">
         <div></div>
         <div></div>
         <div></div>
     </div>
     <div id="primary-nav">
-        <i class="nav-close fa-solid fa-xmark"></i>
         <div class="nav-search">
             <button class="btn btn btn--search btn--tactile"><i class="fa-solid fa-magnifying-glass"></i></button>
             <input type="text" id="search-field" placeholder="search here">
@@ -19,7 +18,7 @@ header.innerHTML = `
         <ul class=" | margin-inline">
             <li id="nav--home"><a href="../index.html">Home</a></li>
             <li id="nav--blog-posts"><a href="../blog.html">Blog Posts</a></li>
-            <li id="nav--topics">Topics<i class="fa-solid fa-chevron-down"></i>
+            <li id="nav--topics"><span>Topics</span ><i class="fa-solid fa-chevron-down"></i>
                 <ul id="nav--topics__menu"></ul>
             </li>
             <li id="nav--contact"><a href="contact.html">Contact</a></li>
@@ -28,7 +27,8 @@ header.innerHTML = `
     </div>
     </nav>
 `
-//
+//// old: <i class="nav-close fa-solid fa-xmark"></i>
+// 
 
 const searchBtn = document.querySelector(".btn--search")
 const searchField = document.querySelector("#search-field")
@@ -43,36 +43,32 @@ function searchSite() {
 // navbar
 const body = document.querySelector("body");
 const primaryNav = document.querySelector("#primary-nav");
+const primaryNavBtn = document.querySelector("#primary-nav-btn");
 const navBtnClose = document.querySelector(".nav-close");
 const navTopics = document.querySelector("#nav--topics");
 const navTopicsMenu = document.querySelector("#nav--topics__menu");
 
-navTopics.addEventListener("pointerover", openTopicsMenu);
-navTopics.addEventListener("pointerleave", closeTopicsMenu);
-navTopicsMenu.addEventListener("pointerenter", openTopicsMenu);
-navTopicsMenu.addEventListener("pointerleave", closeTopicsMenu);
+navTopics.addEventListener("mouseover", openTopicsMenu);
+navTopics.addEventListener("mouseleave", closeTopicsMenu);
+navTopicsMenu.addEventListener("mouseenter", openTopicsMenu);
+navTopicsMenu.addEventListener("mouseleave", closeTopicsMenu);
 navTopics.addEventListener("touchend", toggleTopicsMenu);
 
-function openTopicsMenu() {navTopicsMenu.style.display = "flex"};
-function closeTopicsMenu() {navTopicsMenu.style.display = "none"};
-function toggleTopicsMenu() {
-    if(navTopicsMenu.style.display === "none" || !navTopicsMenu.style.display) {
-        navTopicsMenu.style.display = "flex";
-    } else {
-        navTopicsMenu.style.display = "none";
-    }
-};
+function openTopicsMenu() {navTopicsMenu.classList.add("open")};
+function closeTopicsMenu() {navTopicsMenu.classList.remove("open")};
+function toggleTopicsMenu() { navTopicsMenu.classList.toggle("open")};
 
-navBtnClose.addEventListener("click", openNav);
+// navBtnClose.addEventListener("click", openNav);
 
 function openNav() {
     primaryNav.classList.toggle("show-nav");
-    primaryNav.classList.remove("hidden");
     body.classList.toggle("disable-scroll")
+    primaryNavBtn.ariaExpanded === "true" ? primaryNavBtn.ariaExpanded = "false" : primaryNavBtn.ariaExpanded = "true";
+    primaryNav.className === "show-nav" ? "hidden" : "show-nav";
 }
 
-const primaryNavMenu = document.querySelector("#primary-nav-menu");
-primaryNavMenu.addEventListener("click", openNav);
+
+primaryNavBtn.addEventListener("click", openNav);
 
 
 async function topicsNavbar() {
