@@ -23,6 +23,13 @@ viewMore.innerHTML = `
         <i class="fa-solid fa-chevron-down"></i>
     </div>
 `
+function createViewMore() {
+    main.after(viewMore)
+    const viewMoreClickHandler = document.querySelector(".view-more-clickhandler")
+    viewMoreClickHandler.addEventListener("click", () => createBlogPage());
+    viewMoreClickHandler.addEventListener("mouseenter", () => viewMoreClickHandler.classList.add("bounce-arrow"));
+    viewMoreClickHandler.addEventListener("mouseleave", () => viewMoreClickHandler.classList.remove("bounce-arrow"));
+}
 
 // get values from query
 const queryString = document.location.search;
@@ -137,15 +144,6 @@ function createHtml(arr) {
         index++        
     })
     blogSection.appendChild(containerMosaic)
-}
-
-
-function createViewMore() {
-    main.after(viewMore)
-    const viewMoreClickHandler = document.querySelector(".view-more-clickhandler")
-    viewMoreClickHandler.addEventListener("click", () => createBlogPage());
-    viewMoreClickHandler.addEventListener("mouseenter", () => viewMoreClickHandler.classList.add("bounce-arrow"));
-    viewMoreClickHandler.addEventListener("mouseleave", () => viewMoreClickHandler.classList.remove("bounce-arrow"));
 }
 
 let featuredIndex = 0;

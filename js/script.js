@@ -18,7 +18,7 @@ header.innerHTML = `
         <ul class=" | margin-inline">
             <li id="nav--home"><a href="../index.html">Home</a></li>
             <li id="nav--blog-posts"><a href="../blog.html">Blog Posts</a></li>
-            <li id="nav--topics">Topics<i class="fa-solid fa-chevron-down"></i>
+            <li id="nav--topics"><span>Topics</span ><i class="fa-solid fa-chevron-down"></i>
                 <ul id="nav--topics__menu"></ul>
             </li>
             <li id="nav--contact"><a href="contact.html">Contact</a></li>
@@ -48,21 +48,15 @@ const navBtnClose = document.querySelector(".nav-close");
 const navTopics = document.querySelector("#nav--topics");
 const navTopicsMenu = document.querySelector("#nav--topics__menu");
 
-navTopics.addEventListener("pointerover", openTopicsMenu);
-navTopics.addEventListener("pointerleave", closeTopicsMenu);
-navTopicsMenu.addEventListener("pointerenter", openTopicsMenu);
-navTopicsMenu.addEventListener("pointerleave", closeTopicsMenu);
+navTopics.addEventListener("mouseover", openTopicsMenu);
+navTopics.addEventListener("mouseleave", closeTopicsMenu);
+navTopicsMenu.addEventListener("mouseenter", openTopicsMenu);
+navTopicsMenu.addEventListener("mouseleave", closeTopicsMenu);
 navTopics.addEventListener("touchend", toggleTopicsMenu);
 
-function openTopicsMenu() {navTopicsMenu.style.display = "flex"};
-function closeTopicsMenu() {navTopicsMenu.style.display = "none"};
-function toggleTopicsMenu() {
-    if(navTopicsMenu.style.display === "none" || !navTopicsMenu.style.display) {
-        navTopicsMenu.style.display = "flex";
-    } else {
-        navTopicsMenu.style.display = "none";
-    }
-};
+function openTopicsMenu() {navTopicsMenu.classList.add("open")};
+function closeTopicsMenu() {navTopicsMenu.classList.remove("open")};
+function toggleTopicsMenu() { navTopicsMenu.classList.toggle("open")};
 
 // navBtnClose.addEventListener("click", openNav);
 

@@ -366,6 +366,11 @@ footer {
     border-radius: 50%;
 }
 
+#nav--topics__menu.open {
+    display: flex;
+}
+
+
     /* nav search */
     .nav-search {
         order: 3;
@@ -504,7 +509,7 @@ footer {
 
     #nav--topics__menu {
         position: absolute;
-        width: max(100%, fit-content);
+        width: 100%;
         top: 100%;
         left: 0;
         background-color: var(--clr-primary-700);
