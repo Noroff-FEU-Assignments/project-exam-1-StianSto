@@ -234,6 +234,7 @@ header {
     justify-content: center;
     background-color: var(--clr-secondary-1000);
     border-bottom: 3px solid var(--clr-primary-200);
+    z-index: 10;
 }
 
 footer {
