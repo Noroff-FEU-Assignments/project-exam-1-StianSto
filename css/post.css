@@ -127,3 +127,133 @@ article img {
         display: block;
     }
 }
+
+/* comment section */
+
+.comments-section, .comments__container, .comments {
+    display: flex;
+    flex-direction: column;
+}
+
+.comments-section{
+    padding-inline: 1rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+.comments-section::before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: calc(100% - 2rem);
+    top: 0;
+    background: var(--clr-primary-700)
+}
+
+.comments__container {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 4rem;
+}
+
+.comments {
+    width: 100%;
+    flex: 3;
+    min-width: min(400px, 100vw);
+}
+
+.comments__pagination {
+    align-self: center;
+    display: flex;
+    gap: 0.5rem;
+    margin-block: 1rem;
+}
+
+.comments__page-index {
+    text-align: center;
+    font-size: 1.5rem;
+    background: #fff;
+    border: 1px solid var(--clr-primary-700);
+    padding-inline: 0.25em;
+}
+
+.comments__profile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.comments__profile-img {
+    height: 100px;
+    aspect-ratio: 1;
+    background: url(../assets/images/profile_default.svg);
+}
+.comments__profile-info {flex: 1;}
+
+.comments__profile-info p, 
+.leave__comment h3  {margin: 0;}
+
+.comments__profile-username {
+    font-size: var(--fs-400);
+}
+
+.comments__post-date {opacity: 0.7;}
+
+.comment__post {
+    position: relative;
+    padding-top: 1rem;
+}
+
+.comment__post:not(:first-of-type)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 2px;
+    width: 100%;
+    opacity: 0.4;
+    background: var(--clr-primary-400);
+}
+
+.leave__comment {
+    flex: 2;
+    min-width: min(350px, 100vw);
+}
+
+.leave__comment form {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+.leave__comment form > *:not(button), .input-container > * {
+    flex: 1;
+    width: 100%;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.leave__comment form label {
+    font-size: var(--fs-300);
+    font-family: var(--ff-secondary);
+    font-weight: var(--fw-700);
+    color: var(--clr-primary-400);
+}
+
+label span {
+    font-size: smaller;
+    font-weight: var(--fw-300);
+}
+
+.leave__comment form textarea {min-height: 200px;}
+
+/**/

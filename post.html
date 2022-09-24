@@ -44,6 +44,28 @@
             <article class="copy-post | margin-inline"></article>
             <div class="side-panel margin-inline"></div>
         </section>
+        <section class="comments-section | container max-width-copy section-space-small">
+            <h2>Comments</h2>
+            <div class="comments__container">
+                <div class="comments">
+                    <div><p>be the first to leave a comment!</p></div>
+                </div>
+                <div class="leave__comment">
+                    <h3>leave a comment</h3>
+                    <form action="" method="post">
+                        <div class="input-container">
+                            <label for="author_name">Username <span>(leave empty for anonymous)</span></label>
+                            <input class="input-field" name="author_name" id="author-name" type="text">
+                        </div>
+                        <div class="input-container">
+                            <label for="comment-content">Comment <span>(required)</span></label>
+                            <textarea class="input-field" name="content" id="comment-content" required></textarea>
+                        </div>
+                        <button class="btn btn--cta bt--tactile" type="submit" id="submit">Post Comment</button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
     <footer></footer>
 </body>

@@ -51,47 +51,80 @@ function createPost(post, img) {
 }
 
 
-// // modal functions
-// function modal() {
+// retrieve comments
 
-//     const images = article.querySelectorAll("img");
-//     images.forEach( img => img.addEventListener("click", openModal))
+async function retrieveComments() {
+    const commentsContainer = document.querySelector(".comments");
+    let commentsPageIndex = 1;
+    const commentsUrl = `https://snakesandbeans.com/wp-json/wp/v2/comments/?post=${postID}&per_page=2&page=${commentsPageIndex}&_fields=author_name,date,content`;
+    const response = await fetch(commentsUrl);
+    const totalPages = parseFloat(response.headers.get("x-wp-totalPages"))
+    const commentsResults = await response.json();
+    console.log(commentsResults.length)
+    console.log(totalPages)
 
-//     const modal = document.createElement("div");
-//     modal.addEventListener("click", closeModal)
+    if (commentsResults < 1) return; //exit function if there are no comments 
+
+    let html = "";
+    commentsResults.forEach( comment => {
+        let date = comment.date.substring(0, 10)
+        html += `
+            <div class="comment__post">
+                <div class="comments__profile">
+                    <div class="comments__profile-img"></div>
+                    <div class="comments__profile-info">
+                        <p class="comments__profile-username">${comment.author_name}</p>
+                        <p class="comments__post-date">posted: ${date}</p>
+                    </div>
+                </div>
+                <p class="comment__content">${comment.content.rendered}</p>
+            </div>
+        `
+    })
+
+    if (totalPages > 1) {
+        commentsContainer.innerHTML = `
+            <div class="comments__pagination">
+                <button class="btn btn--arrow fa-solid fa-chevron-left"></button>
+                <span class="comments__page-index">${commentsPageIndex}</span>
+                <button class="btn btn--arrow  fa-solid fa-chevron-right"></button>
+            </div>
+        `
+    }
+    commentsContainer.innerHTML += html;
+
+}
+
+document.onload = retrieveComments();
 
 
-//     function openModal() {
 
-//         modal.style.display = "flex"
-        
-//         //clone targeted img and paste into modal 
-//         let img = this.cloneNode()
-//         const imgAlt = document.createElement("p");
-//         imgAlt.innerText = img.alt
+// Comments section
+const form = document.querySelector("form");
+form.addEventListener("submit", postComment)
 
-//         modal.classList.add("modal");
-//         console.log(imgAlt)
-        
-//         modal.appendChild(img);
-//         modal.appendChild(imgAlt);
-//         body.appendChild(modal)
-//         body.classList.add("disable-scroll")
-
-//         setTimeout( () => modal.style.opacity = "1", 0)
-//     }
+async function postComment(e) {
+    e.preventDefault();
 
 
-//     function closeModal(event) {
+    const authorName = document.querySelector("#author-name");
+    const content = document.querySelector("#comment-content");
+    let username;
+    authorName.value.length > 0 ? username = authorName.value : username = "anonymous";
 
-//         const modal = document.querySelector(".modal")
-//         if(event.target !== modal) return;
+    const data = JSON.stringify({
+        post: postID,
+        author_name: username,
+        content: content.value,
+    });
 
-//         modal.style.opacity = "0";
-//         setTimeout( () => {
-//             modal.style.display = "none"
-//             body.classList.remove("disable-scroll")
-//             modal.innerHTML = "";
-//         }, 300) 
-//     }
-// }
+    const urlComments = "https://snakesandbeans.com/wp-json/wp/v2/comments"
+    const response = await fetch(urlComments, {
+        method: form.method,
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: data
+    })
+    form.reset();
+}
