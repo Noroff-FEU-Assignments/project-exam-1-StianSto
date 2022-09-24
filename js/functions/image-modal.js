@@ -18,11 +18,14 @@ function imageModal(contentContainer) {
         let img = this.cloneNode()
         const imgAlt = document.createElement("p");
         imgAlt.innerText = img.alt
+        const modalContentContainer = document.createElement("div");
+
 
         modal.classList.add("modal");
         
-        modal.appendChild(img);
-        modal.appendChild(imgAlt);
+        modalContentContainer.appendChild(img);
+        modalContentContainer.appendChild(imgAlt);
+        modal.appendChild(modalContentContainer);
         body.appendChild(modal)
         body.classList.add("disable-scroll")
 

@@ -54,8 +54,7 @@ ol li {
 
 h1 {
     margin: auto;
-    max-width: 600px;
-    font-size: clamp(var(--fs-500), 5vw + 0.5rem, 54px);
+    font-size: clamp(var(--fs-500), 3.5vw + 0.5rem, 80px);
     padding: 1em 0.75em;
 }
 /**/

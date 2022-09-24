@@ -299,9 +299,8 @@ footer {
     background-color: var(--clr-secondary-1000);
 }
 
-#primary-nav > ul {
-    display: flex;
-}
+#primary-nav > ul,
+#nav--topics__menu.open {display: flex;}
 
 .fa-xmark {
     display: none;
@@ -312,9 +311,7 @@ footer {
     margin: 1rem;
 }
 
-.fa-xmark:hover {
-    cursor: pointer;
-}
+.fa-xmark:hover {cursor: pointer;}
 
 #primary-nav > ul > li {
     white-space: nowrap;
@@ -322,9 +319,7 @@ footer {
     font-family: var(--ff-primary);
 } 
 
-#primary-nav ul * {
-    color: var(--clr-primary-200);
-}
+#primary-nav ul * {color: var(--clr-primary-200);}
 
 .navbar input {
     background-color: var(--clr-primary-700);
@@ -367,15 +362,13 @@ footer {
     border-radius: 50%;
 }
 
-#nav--topics__menu.open {
-    display: flex;
-}
-
 
     /* nav search */
     .nav-search {
         order: 3;
+        flex: 1;
         display: flex;
+        max-width: 50ch;
     }
 
     .navbar .btn--search {
@@ -412,13 +405,8 @@ footer {
         transform-origin: top;
     }
 
-    .fa-xmark {
-        display: block;
-    }
-    
-    .nav-search {
-        order: 0;
-    }
+    .fa-xmark {display: block;}
+    .nav-search {order: 0;}
 
     #primary-nav > ul {
         flex-direction: column;
@@ -430,18 +418,9 @@ footer {
         margin-left: clamp(1em, 10%, 2.5em);
     } 
     
-    
-    #primary-nav ul > *:hover {
-        cursor: pointer;
-    }
-    
-    #primary-nav ul .fa-chevron-down {
-        margin-left: 0.5em;
-    }
-
-    #nav--topics__menu {
-        margin-block: 1em;
-    }
+    #primary-nav ul > *:hover {cursor: pointer;}
+    #primary-nav ul .fa-chevron-down {margin-left: 0.5em;}
+    #nav--topics__menu {margin-block: 1em;}
     
     #nav--topics__menu li {
         --fs-500: smaller;
@@ -456,9 +435,7 @@ footer {
         margin-right: 0.25em;
     }
     
-    .show-nav {
-        height: 100vh!important;
-    }
+    .show-nav {height: 100vh!important;}
     
     .nav-search {
         margin-block: 2rem;
@@ -480,12 +457,14 @@ footer {
 @media only screen and (min-width: 1001px) {
     #primary-nav {
         align-items: center;
-        justify-content: flex-end;
+        justify-content: center;
         height: calc( var(--height-header) - 3px);
     }
 
     #primary-nav > ul {
-        margin-inline: auto;
+        flex: 1;
+        justify-content: center;
+        /* margin-inline: auto; */
         height: 100%;
     }
 
@@ -495,18 +474,15 @@ footer {
         display: flex;
         align-items: center;
         height: 100%;
+        
     }
-
-
 
     #primary-nav > ul > li > a {
         width: 100%;
         padding: 1em;
     }
 
-    #primary-nav > ul > li:hover {
-        background-color: var(--clr-primary-700);
-    }
+    #primary-nav > ul > li:hover {background-color: var(--clr-primary-700);}
 
     #nav--topics {
         position: relative;
@@ -522,11 +498,8 @@ footer {
         padding: 1em;
     }
     
-    #nav--topics__menu li::before {
-        display: none;
-    }
-
-    #primary-nav-btn {
+    #nav--topics__menu li::before, 
+    #primary-nav-btn  {
         display: none;
     }
 }
@@ -538,8 +511,8 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
     overflow: hidden;
     top: 0;
     left: 0;
@@ -549,12 +522,17 @@ footer {
     transition: all 250ms ease-in;
 }
 
-.modal > * {
+.modal > *, .modal img {
+    background-color: var(--clr-primary-200);
     max-width: min(100%, 80vw);
     max-height: min(100%, 80vh);
     width: auto;
     height: auto;
-    color: white;
+}
+
+.modal p {
+    padding-inline: clamp(10px, 2em, 30px);
+    padding-bottom: 1em;
 }
 
 .modal img{
@@ -564,7 +542,6 @@ footer {
     padding: clamp(5px, 1em, 20px);
     background-color: var(--clr-primary-700);
 }
-
 
 
 .loading {
@@ -579,9 +556,7 @@ footer {
     margin-inline: auto;
 }
 
-@keyframes loading {
-    100% {rotate: 360deg}
-}
+@keyframes loading {100% {rotate: 360deg}}
 
 .loading--text {
     font-size: var(--fs-400);

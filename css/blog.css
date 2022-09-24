@@ -177,7 +177,7 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     /* background: linear-gradient(0deg, #FFF8F5FF 70%, #FFF8F500 100%); */
     background: var(--clr-secondary-100);
     width: 100%;
-    height: 40vh;
+    height: 20vh;
     transition: top 500ms ease-in, opacity 5000ms ease-out;
 }
 
