@@ -15,6 +15,8 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
 }
 #filter-items-btn > span {
     margin-right: 0.5em;
+    font-size: smaller;
+    display: none;
 }
 
 #filter-items-btn:hover {
@@ -109,6 +111,7 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     .tile__img {
         aspect-ratio: 20 / 9;
     }
+    #filter-items-btn > span {display: inline;}
 }
 
 .tile__title {
@@ -148,7 +151,7 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     flex: 2 3;
     background-size: cover;
     background-position: 35% 50%;
-    min-width: min(100vw, 250px);
+    min-width: min(100vw, 300px);
 }
 
 .featured-post__text {
@@ -157,11 +160,12 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     flex-direction: column;
     justify-content: center ;
     padding: 1em;
-    min-width: min(100vw, 250px);
+    min-width: min(100vw, 350px);
 }
 
 .featured-post__text > * {
     margin: 0;
+    word-wrap: break-word; /* ensures it doesn't overflow on smaller devices */
 }
 
 #view-more {

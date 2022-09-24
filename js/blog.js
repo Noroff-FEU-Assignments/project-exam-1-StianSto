@@ -60,7 +60,8 @@ async function getFeaturedPosts() {
     const resultsTags = await responseTags.json();
     const editorsPickTag = resultsTags.find( tag => tag.slug === "editors-pick" );
     // get featured posts
-    const urlFeaturedPosts = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/?tags=${editorsPickTag.id}&_embed`
+    let fields = "id,title,excerpt,_links,_embedded";
+    const urlFeaturedPosts = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/?tags=${editorsPickTag.id}&_fields=${fields}&_embed=wp:featuredmedia`
     const featuredPosts = await fetch(urlFeaturedPosts);   
     featuredArr = await featuredPosts.json();
 }
@@ -73,7 +74,8 @@ function updateUrl() {
     let sortByValue = sortBy.selectedOptions[0].dataset.filterSort;
     let sortByDirection = sortBy.selectedOptions[0].dataset.filterSortDirection;
 
-    let url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts?_embed`
+    let fields = "id,title,_links,_embedded"
+    let url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts?_embed=wp:featuredmedia&_fields=${fields}`
     if (itemsPerPage ) url += `&per_page=${itemsPerPage}`
     if (pageIndex) url += `&page=${pageIndex}`
     if (topicValue) url += `&categories=${topicValue}`

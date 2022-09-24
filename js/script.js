@@ -73,7 +73,7 @@ primaryNavBtn.addEventListener("click", openNav);
 
 async function topicsNavbar() {
     const topicsMenu = document.querySelector("#nav--topics__menu");
-    const urlTopics = "https://snakesandbeans.com/wp-json/wp/v2/categories"
+    const urlTopics = "https://snakesandbeans.com/wp-json/wp/v2/categories?_fields=id,name"
     const response = await fetch(urlTopics);
     const results = await response.json();
     let html = "";

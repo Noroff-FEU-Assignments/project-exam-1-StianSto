@@ -2,19 +2,21 @@ import { createSliders } from "./functions/create-sliders.js";
 
 document.querySelector("#nav--home").classList.add("active")
 
-const urlTags = "https://www.snakesandbeans.com/wp-json/wp/v2/tags"
-const urlRecentTenPosts = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/?per_page=10&_embed`;
+let fieldsApi = "id,title,_links,_embedded";
+const urlRecentTenPosts = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/?per_page=10&_embed=wp:featuredmedia&_fields=${fieldsApi}`;
 const recentSlider = document.querySelector('.slider[data-slider="recent-posts"]')
 const editorsSlider = document.querySelector('.slider[data-slider="editors-pick-posts"]');
 
 // fetch api
 async function fetchTags() {
-    // get id for tag
-    let response = await fetch(urlTags);
-    let results = await response.json(); 
+    const fieldsTags = "id,slug";
+    const urlTags =`https://www.snakesandbeans.com/wp-json/wp/v2/tags?_fields=${fieldsTags}`
+    const response = await fetch(urlTags);
+    const results = await response.json(); 
     const editorsPickTag = results.find( tag => tag.slug === "editors-pick" ) 
     const editorsPickTagID = editorsPickTag.id
-    const newUrl = `https://snakesandbeans.com/wp-json/wp/v2/posts/?tags=${editorsPickTagID}&_embed`
+    const fieldsNewurl = "id,title,_links,_embedded"
+    const newUrl = `https://snakesandbeans.com/wp-json/wp/v2/posts/?tags=${editorsPickTagID}&_embed=wp:featuredmedia,_fields=${fieldsNewurl}`
 
     fetchApi(newUrl, editorsSlider)
 }
@@ -40,12 +42,8 @@ function createSlider(array, slider) {
 
     array.forEach( post => {
 
-        // sets default image for post image, and checks if featured image has been embedded to post api. overwrites deafult and adds the embedded image.
-        featuredMedia = "../assets/images/stock-photo-coffee-in-blue-cup-on-wooden-table-in-cafe-with-lighting-background-1387420256.jpg"
         if (post._embedded["wp:featuredmedia"]) featuredMedia = post._embedded["wp:featuredmedia"][0].media_details.sizes.medium_large.source_url;
-        console.log(featuredMedia)
        
-        //create html for post. 
         html += `
             <li> 
                 <a href="post.html?id=${post.id}">
@@ -58,7 +56,7 @@ function createSlider(array, slider) {
                 </a>
             </li> 
         `
-        // create indicator inside indicator container 
+
         sliderIndicators.innerHTML += `
             <span class="slider-indicator" data-slider="${sliderDataAttr}" data-slide-indicator="${postIndex}"></span>
         `

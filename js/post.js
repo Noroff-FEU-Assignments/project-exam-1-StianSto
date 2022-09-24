@@ -11,7 +11,8 @@ const featuredImg = document.querySelector("#hero-picture");
 let featuredImgSize = featuredImg.getBoundingClientRect().width; 
 
 // fetch api 
-const url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/${postID}?_embed`;
+let fieldsApi = "title,content,_links,_embedded"
+const url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/${postID}?fields=${fieldsApi}&_embed=wp:featuredmedia`;
 // wordpress api orderby default is: orderby=date which retrieves the most recent posts
 
 // fetch api and push results into createPost function
@@ -56,7 +57,8 @@ function createPost(post, img) {
 async function retrieveComments() {
     const commentsContainer = document.querySelector(".comments");
     let commentsPageIndex = 1;
-    const commentsUrl = `https://snakesandbeans.com/wp-json/wp/v2/comments/?post=${postID}&per_page=2&page=${commentsPageIndex}&_fields=author_name,date,content`;
+    let fields = "author_name,date,content"
+    const commentsUrl = `https://snakesandbeans.com/wp-json/wp/v2/comments/?post=${postID}&per_page=2&page=${commentsPageIndex}&_fields=${fields}`;
     const response = await fetch(commentsUrl);
     const totalPages = parseFloat(response.headers.get("x-wp-totalPages"))
     const commentsResults = await response.json();

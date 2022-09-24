@@ -73,6 +73,7 @@
 .flex-spread {display: flex; justify-content: space-between;}
 .overflow-x-hidden { overflow-x: hidden; }
 .disable-scroll { overflow: hidden;}
+.modal-disable-scroll { overflow: hidden;}
 .text-center {text-align: center;}
 
 @media only screen and (min-width: 769px) {
@@ -84,7 +85,7 @@
         --fs-700: 64px;
     }
     .flex-row-pc { flex-flow: row wrap; margin-inline: auto;}
-    .disable-scroll { padding-right: 15px;}
+    .modal-disable-scroll { padding-right: 15px;}
 }
 
 
@@ -296,7 +297,6 @@ footer {
     display: flex;
     width: 100%;
     background-color: var(--clr-secondary-1000);
-    transition: transform 250ms ease-in-out;
 }
 
 #primary-nav > ul {
@@ -410,7 +410,6 @@ footer {
         z-index: 10;
         transition: height 350ms ease-in-out;
         transform-origin: top;
-        /* scale: 1 0; */
     }
 
     .fa-xmark {
@@ -459,7 +458,6 @@ footer {
     
     .show-nav {
         height: 100vh!important;
-        /* background-color: var(--clr-secondary-1000); */
     }
     
     .nav-search {
@@ -496,8 +494,14 @@ footer {
         font-size: var(--fs-300);
         display: flex;
         align-items: center;
-        padding-inline: 1em;
         height: 100%;
+    }
+
+
+
+    #primary-nav > ul > li > a {
+        width: 100%;
+        padding: 1em;
     }
 
     #primary-nav > ul > li:hover {
@@ -506,6 +510,7 @@ footer {
 
     #nav--topics {
         position: relative;
+        padding-inline: 1em;
     }
 
     #nav--topics__menu {
@@ -545,17 +550,18 @@ footer {
 }
 
 .modal > * {
-    max-width: 60vw;
-    max-height: 60vh;
+    max-width: min(100%, 80vw);
+    max-height: min(100%, 80vh);
     width: auto;
     height: auto;
     color: white;
 }
 
 .modal img{
+    font-size: 2vw;
     object-fit: contain;
-    border: 20px solid var(--clr-primary-200);
-    padding: 10px;
+    border: clamp(10px, 2em, 30px) solid var(--clr-primary-200);
+    padding: clamp(5px, 1em, 20px);
     background-color: var(--clr-primary-700);
 }
 

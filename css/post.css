@@ -85,6 +85,10 @@ article img {
     height: 100%;
 }
 
+article img:hover {
+    cursor: zoom-in;
+}
+
 .side-panel {
     display: none;
     flex: 2;
