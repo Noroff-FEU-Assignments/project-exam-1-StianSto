@@ -1,10 +1,5 @@
-
-
-
 /* generel styling */
-section {
-    margin-bottom: 1rem;
-}
+section {margin-bottom: 1rem;}
 
 h2, h3, h4 {
     margin-top: 2rem;
@@ -84,9 +79,7 @@ article img {
     height: 100%;
 }
 
-article img:hover {
-    cursor: zoom-in;
-}
+article img:hover {cursor: zoom-in;}
 
 .side-panel {
     display: none;
@@ -96,18 +89,9 @@ article img:hover {
 }
 
 /* utility for images */
-.img--horizontal {
-    aspect-ratio: 16 / 9;
-}
-
-.img--vertical {
-    aspect-ratio: 9 / 16;
-}
-
-.img-float {
-    width: 200px; /* default */
-}
-
+.img--horizontal {aspect-ratio: 16 / 9;}
+.img--vertical {aspect-ratio: 9 / 16;}
+.img-float {width: 200px; /* default */}
 .float-right {float: right;}
 .float-left {float: left;}
 /**/
