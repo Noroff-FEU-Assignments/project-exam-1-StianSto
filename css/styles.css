@@ -89,7 +89,6 @@
 }
 
 
-
 /* css reset */
 * {
     margin: 0;
@@ -105,6 +104,20 @@ h1::first-letter,
 h2::first-letter, 
 h3::first-letter {
     text-transform: capitalize;
+}
+
+.skip-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: var(--clr-primary-200);
+    padding: 0.5em;
+    translate: 0 -120%;
+}
+
+.skip-link:focus {
+    translate: 0 0;;
 }
 
 h1 {

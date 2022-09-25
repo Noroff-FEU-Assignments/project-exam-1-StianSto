@@ -12,13 +12,13 @@ header.innerHTML = `
     </div>
     <div id="primary-nav">
         <div class="nav-search">
-            <button class="btn btn btn--search btn--tactile"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="btn btn btn--search btn--tactile" aria-label="search button"><i class="fa-solid fa-magnifying-glass"></i></button>
             <input type="text" id="search-field" placeholder="search here">
         </div>
-        <ul class=" | margin-inline">
+        <ul class=" | margin-inline" aria-label="primary navigation links">
             <li id="nav--home"><a href="../index.html">Home</a></li>
             <li id="nav--blog-posts"><a href="../blog.html">Blog Posts</a></li>
-            <li id="nav--topics"><span>Topics</span ><i class="fa-solid fa-chevron-down"></i>
+            <li id="nav--topics" tabindex="0" aria-label="list of topics, hit enter to expand" aria-expanded="false"><span>Topics</span ><i class="fa-solid fa-chevron-down"></i>
                 <ul id="nav--topics__menu"></ul>
             </li>
             <li id="nav--contact"><a href="contact.html">Contact</a></li>
@@ -53,10 +53,15 @@ navTopics.addEventListener("mouseleave", closeTopicsMenu);
 navTopicsMenu.addEventListener("mouseenter", openTopicsMenu);
 navTopicsMenu.addEventListener("mouseleave", closeTopicsMenu);
 navTopics.addEventListener("touchend", toggleTopicsMenu);
+// ARIA-enabled
+navTopics.addEventListener("keypress", toggleTopicsMenu);
 
 function openTopicsMenu() {navTopicsMenu.classList.add("open")};
 function closeTopicsMenu() {navTopicsMenu.classList.remove("open")};
-function toggleTopicsMenu() { navTopicsMenu.classList.toggle("open")};
+function toggleTopicsMenu() { 
+    navTopicsMenu.classList.toggle("open");
+    navTopics.ariaExpanded === "true" ? navTopics.ariaExpanded = "false" : navTopics.ariaExpanded = "true";
+};
 
 // navBtnClose.addEventListener("click", openNav);
 

@@ -31,16 +31,19 @@
     </script>
 </head>
 <body>
+    <a id="top" class="skip-link" href="#banner" aria-label="header, click to skip to main content">skip to content</a>
     <header></header>
     <main>
-        <section class="hero">
+        <section id="banner" class="hero">
+        <a class="skip-link" href="#recent-posts" aria-label="banner, click to skip to next section">skip to content</a>
             <div class="hero--img"></div>
             <div class="hero--text | margin-inline">
                 <h1 class="hero--title">The Daily Brew</h1>
                 <p class="hero--subtitle">“For us who get overly excited over a cup of coffee in the morning”</p>
             </div>
         </section>
-        <section class="section--recent-posts | section-space margin-center" >
+        <section id="recent-posts" class="section--recent-posts | section-space margin-center" >
+            <a class="skip-link" href="#fun-fact" aria-label="recent posts, click to skip to next section">skip to next section</a>
             <h2 class=" | text-center ">Recent Posts</h2>
             <div class="slider-arrows--container">
                 <button class="btn btn--arrow fa-solid fa-chevron-left" data-slider="recent-posts" data-slide-direction="prev"></button>
@@ -51,14 +54,16 @@
                 <div class="container-slider-indicators" data-slider="recent-posts"></div>
             </div>
         </section>
-        <section class="fun-fact | section-space">
+        <section id="fun-fact" class="fun-fact | section-space">
+            <a class="skip-link" href="#check-out-topics" aria-label="fun fact, enter to skip to next section">skip to next section</a>
             <div class="fun-fact__text | max-width-body margin-center">
                 <h2>Did You Know?</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
         </section>
         <div class=" | flex-container flex-row-pc max-width-body margin-center overflow-x-hidden">
-            <section class="topics-section | section-space margin-inline">
+            <section id="check-out-topics" class="topics-section | section-space margin-inline">
+            <a class="skip-link" href="#editors-pick" aria-label="check out these topics, enter to skip to next section">skip to next section</a>
                 <h2>Check out these topics</h2>
                 <ul>
                     <li>
@@ -75,7 +80,8 @@
                     </li>
                 </ul>
             </section>
-            <section class="section--editors-pick-posts | section-space max-width-body" >
+            <section  id="editors-pick" class="section--editors-pick-posts | section-space max-width-body" >
+            <a class="skip-link" href="#footer" aria-label="editors-pick, last section, click to skip to footer">skip to next section</a>
                 <h2 class=" | text-center ">Editors Pick</h2>
                 <div class="slider-arrows--container">
                     <button class="btn btn--arrow fa-solid fa-chevron-left" data-slider="editors-pick-posts" data-slide-direction="prev"></button>
@@ -88,6 +94,8 @@
             </section>
         </div>
     </main>
-    <footer class=" | section-space"></footer>
+    <footer class=" | section-space">
+        <a class="skip-link" href="#top" aria-label="footer, click to back to top">skip to next section</a>
+    </footer>
 </body>
 </html>
