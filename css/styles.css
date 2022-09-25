@@ -379,9 +379,9 @@ footer {
     /* nav search */
     .nav-search {
         order: 3;
-        flex: 1;
+        width: calc(100% - 4rem);
         display: flex;
-        max-width: 50ch;
+        max-width: 40ch;
     }
 
     .navbar .btn--search {
@@ -453,6 +453,7 @@ footer {
     .nav-search {
         margin-block: 2rem;
         margin-inline: 2rem;
+        max-width: none;
     }
 
     [aria-expanded="true"] > * {
@@ -461,6 +462,7 @@ footer {
         left: 0;
         transition: all 200ms ease;
     }
+
     [aria-expanded="true"] > *:nth-child(1) {rotate: 45deg}
     [aria-expanded="true"] > *:nth-child(3) {rotate: -45deg;}
     [aria-expanded="true"] > *:nth-child(2) {opacity: 0;}
