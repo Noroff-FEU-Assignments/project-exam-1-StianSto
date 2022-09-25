@@ -27,8 +27,9 @@
     </script>
 </head>
 <body>
+    <a id="top" class="skip-link" href="#main" aria-label="header, click to skip to main content">skip to content</a>
     <header></header>
-    <main>
+    <main id="main">
         <div class="breadcrumbs">
             <a href="index.html"><span>Home</span></a> / 
             <span>Blog posts</span>
@@ -37,7 +38,8 @@
             <h1>Posts</h1>
             <button id="filter-items-btn"><span>Filter</span><i class="fa-solid fa-filter"></i></button>
         </div>
-        <div id="filter-container" class="container max-width-1000 margin-center">
+        <div id="filter-container" class="container max-width-1000 margin-center" aria-expanded="false">
+            <a class="skip-link" href="#blog_section" aria-label="filter section. click to skip to next section">skip to content</a>
             <input class="input-field" id="input-search" type="text" placeholder="search posts">
             <select class="input-field" name="topic" id="topic">
                 <option value="">select topic</option>
@@ -52,7 +54,7 @@
             </select>
             <button id="filter-posts" class="btn btn--cta btn--tactile">Search</button>
         </div>
-        <div class="blog-section">
+        <div id="blog_section" class="blog-section">
         </div>
     </main>
     <footer class=" | section-space"></footer>

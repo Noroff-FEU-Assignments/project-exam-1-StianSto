@@ -18,13 +18,13 @@ search.addEventListener("keypress", (event) =>  {
 const viewMore = document.createElement('div')
 viewMore.setAttribute("id", "view-more")
 viewMore.innerHTML = `
-    <div class="view-more-clickhandler"> 
+    <div class="view-more-clickhandler" tabindex="0" href=""> 
         <p>click to view more</p>
         <i class="fa-solid fa-chevron-down"></i>
     </div>
 `
 function createViewMore() {
-    main.after(viewMore)
+    blogSection.after(viewMore)
     const viewMoreClickHandler = document.querySelector(".view-more-clickhandler")
     viewMoreClickHandler.addEventListener("click", () => createBlogPage());
     viewMoreClickHandler.addEventListener("mouseenter", () => viewMoreClickHandler.classList.add("bounce-arrow"));
