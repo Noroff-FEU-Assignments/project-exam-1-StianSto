@@ -73,6 +73,11 @@
     flex-direction: column;
 }
 
+.slider--post[data-slider="editors-pick-posts"] {
+    min-width: min(100vw, 300px);
+    max-width: 500px;
+}
+
 .slider--post__img {
     width: 100%;
     flex: 1;

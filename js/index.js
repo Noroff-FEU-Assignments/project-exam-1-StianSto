@@ -70,11 +70,14 @@ function createSlider(array, slider) {
 
 
 // set width on slider posts
-const editorsSliderPost = editorsSlider.querySelectorAll('.slider--post');
+
 
 function setSlidePostWidth() {
-    
+    const editorsSliderPost = editorsSlider.querySelectorAll('.slider--post');
+    console.log(editorsSliderPost)
+
     let containerWidth = editorsSlider.getBoundingClientRect().width; 
+    console.log(containerWidth)
     editorsSliderPost.forEach(post => {
         post.style.width = containerWidth - 100 + "px";
     })   
