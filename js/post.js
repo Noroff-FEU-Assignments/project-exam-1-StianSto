@@ -19,10 +19,6 @@ const url = `https://www.snakesandbeans.com/wp-json/wp/v2/posts/${postID}?fields
 async function fetchApi() {
     const response = await fetch(url);
     const post = await response.json();
-    console.log(post)
-
-    // check if featureed image is embedded
-
 
     let featuredImg = "";
     if (post._embedded["wp:featuredmedia"]) {
@@ -53,19 +49,18 @@ function createPost(post, img) {
 
 
 // retrieve comments
+let commentsPageIndex = 1;
+let totalPages = "";
 
 async function retrieveComments() {
     const commentsContainer = document.querySelector(".comments");
-    let commentsPageIndex = 1;
     let fields = "author_name,date,content"
     const commentsUrl = `https://snakesandbeans.com/wp-json/wp/v2/comments/?post=${postID}&per_page=2&page=${commentsPageIndex}&_fields=${fields}`;
     const response = await fetch(commentsUrl);
-    const totalPages = parseFloat(response.headers.get("x-wp-totalPages"))
+    totalPages = parseFloat(response.headers.get("x-wp-totalPages"))
     const commentsResults = await response.json();
-    console.log(commentsResults.length)
-    console.log(totalPages)
 
-    if (commentsResults < 1) return; //exit function if there are no comments 
+    if (commentsResults.length < 1) return; //exit function if there are no comments 
 
     let html = "";
     commentsResults.forEach( comment => {
@@ -87,14 +82,21 @@ async function retrieveComments() {
     if (totalPages > 1) {
         commentsContainer.innerHTML = `
             <div class="comments__pagination">
-                <button class="btn btn--arrow fa-solid fa-chevron-left"></button>
+                <button id="prev-comment" class="btn btn--arrow fa-solid fa-chevron-left"></button>
                 <span class="comments__page-index">${commentsPageIndex}</span>
-                <button class="btn btn--arrow  fa-solid fa-chevron-right"></button>
+                <button id="next-comment" class="btn btn--arrow  fa-solid fa-chevron-right"></button>
             </div>
         `
+        
+
     }
     commentsContainer.innerHTML += html;
-
+    commentsPageEventListeners();
+    
+    setTimeout(() => {
+        const currComments = document.querySelectorAll(".comment__post")
+        currComments.forEach( comment => comment.style.translate = "0")
+    }, 0)
 }
 
 document.onload = retrieveComments();
@@ -129,4 +131,36 @@ async function postComment(e) {
         body: data
     })
     form.reset();
+}
+
+function commentsPageEventListeners() {
+    const nextCommentBtn = document.querySelector("#next-comment");
+    const prevCommentBtn = document.querySelector("#prev-comment");
+    nextCommentBtn.addEventListener("click", commentPagination)
+    prevCommentBtn.addEventListener("click", commentPagination)
+}
+
+function commentPagination() {
+    console.log(commentsPageIndex)
+    if (this.id === "next-comment") {
+        if (commentsPageIndex >= totalPages) return;
+        commentsPageIndex++;
+        transitionComments("-100%");
+
+    }
+
+    if (this.id === "prev-comment") {
+        if (commentsPageIndex <= 1) return;
+        commentsPageIndex--;
+        transitionComments("-100%");
+    }
+
+    setTimeout(retrieveComments, 600)
+
+}
+
+function transitionComments(directionValue) {
+    console.log(directionValue)
+    const currComments = document.querySelectorAll(".comment__post")
+    currComments.forEach( comment => comment.style.translate = directionValue + "0")
 }

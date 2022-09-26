@@ -151,6 +151,7 @@ article img:hover {cursor: zoom-in;}
     width: 100%;
     flex: 3;
     min-width: min(400px, 100vw);
+    overflow-x: hidden;
 }
 
 .comments__pagination {
@@ -194,6 +195,8 @@ article img:hover {cursor: zoom-in;}
 .comment__post {
     position: relative;
     padding-top: 1rem;
+    translate: -100%;
+    transition: translate 500ms ease-in-out;
 }
 
 .comment__post:not(:first-of-type)::after {
