@@ -196,7 +196,7 @@ article img:hover {cursor: zoom-in;}
     position: relative;
     padding-top: 1rem;
     translate: -100%;
-    transition: translate 500ms ease-in-out;
+    transition: translate 300ms ease-in-out;
 }
 
 .comment__post:not(:first-of-type)::after {

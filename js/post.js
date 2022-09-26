@@ -130,7 +130,22 @@ async function postComment(e) {
         },
         body: data
     })
+    if(response.status >= 200 && response.status < 300) commentSent(); 
+    console.log(response.status)
     form.reset();
+}
+
+function commentSent() {
+    const submitBtn = document.querySelector("#submit");
+    submitBtn.innerText = "comment posted"
+    submitBtn.style.backgroundColor = "#008900"
+    submitBtn.disabled = true;
+
+    setTimeout( () => {
+        submitBtn.innerText = "Post Comment"
+        submitBtn.style.backgroundColor = "var(--clr-accent-900)"
+        submitBtn.disabled = false;
+    }, 4000)
 }
 
 function commentsPageEventListeners() {
