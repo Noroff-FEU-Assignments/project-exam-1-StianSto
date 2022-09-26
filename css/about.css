@@ -46,7 +46,6 @@ figure, .wp-block-image {
 }
 
 figure img {
-    opacity: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -93,6 +92,9 @@ figure img {
     grid-template-columns: 50% 1fr;
     grid-template-rows: auto;
     gap: 1em;
+}
+.wp-block-media-text img {
+    opacity: 0;
 }
 
 .wp-container-1, .wp-container-2, .wp-container-3 {

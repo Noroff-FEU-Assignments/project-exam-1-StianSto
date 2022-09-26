@@ -114,10 +114,12 @@ h3::first-letter {
     background-color: var(--clr-primary-200);
     padding: 0.5em;
     translate: 0 -120%;
+    opacity: 0;
 }
 
 .skip-link:focus {
     translate: 0 0;;
+    opacity: 1;
 }
 
 h1 {

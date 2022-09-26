@@ -64,14 +64,19 @@ async function retrieveComments() {
 
     let html = "";
     commentsResults.forEach( comment => {
-        let date = comment.date.substring(0, 10)
+        console.log(comment.date)
+        let parseDate = new Date(comment.date)
+        let commentDate = parseDate.toLocaleString("default", {day: '2-digit', month: 'long', year: 'numeric'});
+
+        console.log(commentDate)
+        // let date = comment.date.substring(0, 10)
         html += `
             <div class="comment__post">
                 <div class="comments__profile">
                     <div class="comments__profile-img"></div>
                     <div class="comments__profile-info">
                         <p class="comments__profile-username">${comment.author_name}</p>
-                        <p class="comments__post-date">posted: ${date}</p>
+                        <p class="comments__post-date">posted: ${commentDate}</p>
                     </div>
                 </div>
                 <p class="comment__content">${comment.content.rendered}</p>
