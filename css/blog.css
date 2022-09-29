@@ -202,7 +202,3 @@ main > *:not(.breadcrumbs, .blog-section), .container-mosaic {
     0% {}
     100% {margin-top: 1em;}
 }
-
-footer {
-    min-height: 30vh;
-}

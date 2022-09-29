@@ -6,9 +6,9 @@ header.innerHTML = `
         <img src="assets/logo-the-daily-brew.svg" alt="">
     </a>
     <div id="primary-nav-btn" aria-expanded="false">
-        <div></div>
-        <div></div>
-        <div></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
     </div>
     <div id="primary-nav">
         <div class="nav-search">
@@ -27,7 +27,11 @@ header.innerHTML = `
     </div>
     </nav>
 `
-//// old: <i class="nav-close fa-solid fa-xmark"></i>
+
+const footer = document.querySelector("footer");
+footer.innerHTML = `
+    <p>All rights reserved &copy;</p>
+`
 // 
 
 const searchBtn = document.querySelector(".btn--search")
