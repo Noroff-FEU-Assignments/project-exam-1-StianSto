@@ -96,6 +96,10 @@ main > *:not(.breadcrumbs, .blog-section),
     flex: 1;
     min-height: 20%;
     aspect-ratio: 3 / 2;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 }
 
 .tile__title {
