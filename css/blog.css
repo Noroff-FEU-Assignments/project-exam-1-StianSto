@@ -87,6 +87,7 @@ main > *:not(.breadcrumbs, .blog-section),
     max-height: 450px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .tile__img {
