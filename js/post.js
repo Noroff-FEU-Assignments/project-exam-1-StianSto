@@ -21,10 +21,10 @@ async function fetchApi() {
     const post = await response.json();
 
     let imgLocation = post._embedded["wp:featuredmedia"][0];
-    let featuredImg = imgLocation.source_url;
+    let featuredImg = "";
 
     if (post._embedded["wp:featuredmedia"]) {
-        if (featuredImgSize > 800) return;
+        if (featuredImgSize > 800) featuredImg = imgLocation.source_url;
         // load image with appropriate size
         console.log(post._embedded["wp:featuredmedia"])
         if (imgLocation.media_details.sizes.medium_large) featuredImg = imgLocation.media_details.sizes.medium_large.source_url;
@@ -71,8 +71,6 @@ async function retrieveComments() {
         let parseDate = new Date(comment.date)
         let commentDate = parseDate.toLocaleString("default", {day: '2-digit', month: 'long', year: 'numeric'});
 
-        console.log(commentDate)
-        // let date = comment.date.substring(0, 10)
         html += `
             <div class="comment__post">
                 <div class="comments__profile">
