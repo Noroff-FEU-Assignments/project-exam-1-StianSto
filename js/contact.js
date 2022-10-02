@@ -28,12 +28,9 @@ async function sendContactForm(event) {
             main.innerHTML = "";
         }
     }   catch(error) {
-        console.warn(error)
         respondedMessage.innerText = `there was a problem trying to send your message. error: ${response.status}: ${error}`
         respondedMessage.classList.add("error");
     } 
-    console.dir(respondedMessage)
-    console.log(respondedMessage)
     main.appendChild(respondedMessage)
     main.innerHTML += `
 
@@ -59,7 +56,6 @@ yourName.addEventListener("focusout", (e) => {
 })
 
 yourEmail.addEventListener("focusout", (e) => {
-    console.log(regexEmail.test(e.target.value))
     e.target.value && regexEmail.test(e.target.value) ? inputIsValid(e.target) : displayErrMsg(e.target, checkEmail(e.target))
 })
 
@@ -89,17 +85,13 @@ function displayErrMsg(e, msg) {
     errorMsg.innerText = msg;
     errorMsg.classList.add("error-msg")
     e.after(errorMsg)
-    console.dir(e)
 }
 
 function checkFormValidation() {
 
     const inputValidation = document.querySelectorAll('[data-valid]')
-    let validity 
-    inputValidation.forEach( e => {
-        validity = e.dataset.valid
-        console.log(validity)
-    })   
+    let validity;
+    inputValidation.forEach( e => validity = e.dataset.valid );
     return validity;
 }
 

@@ -68,35 +68,29 @@ function createSlider(array, slider) {
     setSlidePostWidthEditorsPick();
 } 
 
-
 // set width on slider posts because container query are not yet fully supported
 function setSlidePostWidthEditorsPick(slider) {
     const editorsSliderPost = editorsSlider.querySelectorAll('.slider--post');
 
     let containerWidth = editorsSlider.getBoundingClientRect().width; 
-    console.log(containerWidth)
-    console.log(editorsSliderPost)
-    editorsSliderPost.forEach(post => {
-        console.dir(post)
-        post.style.width = containerWidth - 100 + "px";
-    })   
-}
-
-window.onresize = () => {
-    getFunFactImg();
-    setSlidePostWidthEditorsPick();
+    editorsSliderPost.forEach( post => post.style.width = containerWidth - 100 + "px" )
 }
 
 // add picture to fun fact section
-const urlFunFact = "http://www.snakesandbeans.com/wp-json/wp/v2/media/219?_fields=source_url";
+const urlFunFact = "https://www.snakesandbeans.com/wp-json/wp/v2/media/219?_fields=source_url";
 const funFact = document.querySelector("#fun-fact");
-funFact.onload = getFunFactImg();
 
 async function getFunFactImg() {
     if(window.innerWidth < 769) return funFact.style.backgroundImage = "";
     const response = await fetch(urlFunFact)
     const result = await response.json();
+    console.log(result)
 
     funFact.style.backgroundImage = `linear-gradient(90deg, rgba(38,10,0,1) 0%, rgba(38,10,0,1) 50%, rgba(38,10,0,0) 100%), url(${result.source_url})`;
 }
 
+funFact.onload = getFunFactImg();
+window.onresize = () => {
+    getFunFactImg();
+    setSlidePostWidthEditorsPick();
+}
