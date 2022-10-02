@@ -49,11 +49,12 @@ const body = document.querySelector("body");
 const primaryNav = document.querySelector("#primary-nav");
 const primaryNavBtn = document.querySelector("#primary-nav-btn");
 const navBtnClose = document.querySelector(".nav-close");
-const navTopics = document.querySelector("#nav--topics");
+const navTopicsContainer = document.querySelector("#nav--topics");
+const navTopics = document.querySelector("#nav--topics span");
 const navTopicsMenu = document.querySelector("#nav--topics__menu");
 
-navTopics.addEventListener("mouseover", openTopicsMenu);
-navTopics.addEventListener("mouseleave", closeTopicsMenu);
+navTopicsContainer.addEventListener("mouseover", openTopicsMenu);
+navTopicsContainer.addEventListener("mouseleave", closeTopicsMenu);
 navTopicsMenu.addEventListener("mouseenter", openTopicsMenu);
 navTopicsMenu.addEventListener("mouseleave", closeTopicsMenu);
 navTopics.addEventListener("touchend", toggleTopicsMenu);
