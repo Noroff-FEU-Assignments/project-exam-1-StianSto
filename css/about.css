@@ -29,16 +29,11 @@ h2 {
     margin-inline: auto;
 }
 
-article {
-    max-width: var(--max-width-aboutus);
-}
-
 p {
     margin-bottom: 1em;
 }
 
 figure, .wp-block-image {
-    max-width: var(--max-width-aboutus);
     height: 100%;
     background-size: cover;
     min-height: 250px;
