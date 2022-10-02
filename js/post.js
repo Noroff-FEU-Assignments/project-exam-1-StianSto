@@ -20,12 +20,15 @@ async function fetchApi() {
     const response = await fetch(url);
     const post = await response.json();
 
-    let featuredImg = "";
+    let imgLocation = post._embedded["wp:featuredmedia"][0];
+    let featuredImg = imgLocation.source_url;
+
     if (post._embedded["wp:featuredmedia"]) {
+        if (featuredImgSize > 800) return;
         // load image with appropriate size
-        featuredImgSize > 800 
-            ? featuredImg += post._embedded["wp:featuredmedia"][0].media_details.sizes.large.source_url
-            : featuredImg += post._embedded["wp:featuredmedia"][0].media_details.sizes.medium_large.source_url;
+        console.log(post._embedded["wp:featuredmedia"])
+        if (imgLocation.media_details.sizes.medium_large) featuredImg = imgLocation.media_details.sizes.medium_large.source_url;
+        if (!imgLocation.media_details.sizes.medium_large) featuredImg = imgLocation.media_details.sizes.large.source_url;
     }
     createPost(post, featuredImg)    
 
