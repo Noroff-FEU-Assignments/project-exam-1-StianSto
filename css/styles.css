@@ -270,6 +270,7 @@ footer > * {
 
 /* navbar */
 .navbar {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -416,7 +417,6 @@ footer > * {
         top: calc(var(--height-header) - 5px);
         left: 0;
         flex-direction: column;
-        width: 100vw;
         height: 0vh;
         overflow: hidden;
         z-index: 10;
@@ -537,7 +537,6 @@ footer > * {
     overflow: hidden;
     top: 0;
     left: 0;
-    width: 100vw;
     height: 100vh;
     opacity: 0;
     transition: all 250ms ease-in;
